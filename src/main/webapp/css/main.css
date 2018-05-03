@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Raleway|Lora|Comfortaa');
+
+.albumName{
+    text-indent: 32px;
+    font-size: 30px;
+    color : black;
+}
+a{
+	color : black;
+}
+a:hover{
+    color : #e64022;
+}
+.albInfo{
+	color: #777;
+	font-family: YandexSans,Arial,Helvetica,sans-serif;
+	font-size: 15px;
+    line-height: 20px;
+    font-weight: normal;
+    margin: 10px 0 5px;
+}
+.separator{
+    display: inline-block;
+    width: 2px;
+    height: 2px;
+    margin: -2px 6px 0;
+    content: '';
+    overflow: hidden;
+    vertical-align: middle;
+    background-color: #d8d8d8;
+    border-radius: 100%;
+    
+}
+.navbar-form navbar-left{
+	width: 216px;
+}
+#search{
+	font-family: YandexSans,Arial,Helvetica,sans-serif;
+	width: 150px;
+	:focus::-webkit-input-placeholder {color: transparent}
+}
+.navbar-form .form-control{
+	width: 150px;
+}
+#con {
+    width: 1200px;
+}
+#login {
+    margin: 7.5px -15px;
+    font-family: YandexSans,Arial,Helvetica,sans-serif;
+    font-size: 14px;
+}
+#cart{
+	margin: 9.5px 15px;
+	 display: inline;
+}
+#cartAlbum{
+    margin: 4.5px 4px;
+     display: inline;
+}
