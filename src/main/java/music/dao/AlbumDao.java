@@ -5,7 +5,7 @@ import music.model.Artist;
 import java.util.List;
 
 public interface AlbumDao extends CrudDao<Album>{
- 	lol
+ 	kek
 	List<Album> findAll();
 	
 	List<Album> getByBand(int fkBand);
