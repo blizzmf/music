@@ -49,6 +49,7 @@
                 </tr>
                 <c:forEach items="${pop}" var="music">
                     <tr>
+
                         <td>${music.name}</td>
                         <td>${music.duration}</td>
                         <td>${music.musFormat}</td>
@@ -102,14 +103,6 @@
                 </tr>
                 <c:forEach items="${musics}" var="music">
                     <tr>
-                        <td><audio id="player" src="1.mp3" controls></audio>
-                            <%--<div>--%>
-                                <%--<button onclick="document.getElementById('player').play()">Воспроизведение</button>--%>
-                                <%--<button onclick="document.getElementById('player').pause()">Пауза</button>--%>
-                                <%--<button onclick="document.getElementById('player').volume+=0.1">Громкость +</button>--%>
-                                <%--<button onclick="document.getElementById('player').volume-=0.1">Громкость -</button>--%>
-                            <%--</div> --%>
-                        </td>
                         <td>${music.name}</td>
                         <td>${music.duration}</td>
                         <td>${music.musFormat}</td>
@@ -145,4 +138,5 @@
             </table>
         </c:if>
     </section>
+    <ui:footer></ui:footer>
 </ui:html>
