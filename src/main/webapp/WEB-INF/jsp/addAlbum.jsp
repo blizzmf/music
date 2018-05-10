@@ -85,7 +85,7 @@
 						<label for="image">Выберите обложку альбома</label>
 					</p>
 					<p>
-						<input name="file" id="fileToUpload" type="file" />
+						<input name="file" id="fileToUpload" type="file" accept=".jpg, .jpeg, .png" />
 					</p>
 				</td>
 			</tr>

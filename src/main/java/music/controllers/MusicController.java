@@ -1,10 +1,12 @@
 package music.controllers;
 
+import java.io.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Transient;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +31,12 @@ import music.service.ArtistService;
 import music.service.BandService;
 import music.service.MusicService;
 import music.service.UserService;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 @Controller
 public class MusicController {
+
+	private static final String UPLOAD_ToProject = "D:\\old\\Projekts\\music\\src\\main\\webapp\\mus";
 
 	@Autowired
 	MusicService musicService;
@@ -79,7 +84,7 @@ public class MusicController {
     @RequestMapping(value = "/addMusic/add", method = RequestMethod.POST)
     @Transactional
     public String addMusicRedr(@ModelAttribute("one") Music music, @RequestParam("musicArtist") String art, 
-    		@RequestParam("musicAlbum") String mAlmub){
+    		@RequestParam("musicAlbum") String mAlmub, @RequestParam CommonsMultipartFile file, HttpSession session){
     	List<Artist> a =  artistService.getByName(art);
         for (Artist tmp : a) {
         	music.setArtistID(tmp.getId());
@@ -87,7 +92,20 @@ public class MusicController {
         /*Set<Album> albums = new HashSet<>();
         albums.add(albumService.getByName(mAlmub));
         music.setAlbums(albums);*/
-        Album album = albumService.getByName(mAlmub);
+		byte[] bytes = file.getBytes();
+		BufferedOutputStream stream;
+		try {
+			stream = new BufferedOutputStream(new FileOutputStream(
+					new File(UPLOAD_ToProject + File.separator + music.getName()+".mp3")));
+			stream.write(bytes);
+			stream.flush();
+			stream.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Album album = albumService.getByName(mAlmub);
         if(album != null)
         	music.setAlbumID(album.getId());
         if(music.getId() == 0){
@@ -100,8 +118,9 @@ public class MusicController {
     
     @RequestMapping("deleteMusic")
 	public String removeMusic(@RequestParam("id") int id, @RequestParam("username") String username) {
+	    Music music = this.musicService.getMusicById(id);
 		this.musicService.removeMusic(id);
-
+        new File(UPLOAD_ToProject + File.separator + music.getName()+".mp3");
 		return "redirect:/music?username=" + username;
 	}
 

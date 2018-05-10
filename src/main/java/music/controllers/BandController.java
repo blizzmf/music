@@ -43,8 +43,8 @@ import music.service.GenreService;
 public class BandController {
 	
 	private static final String UPLOAD_DIRECTORY = File.separator + "img";
-	private static final String UPLOAD_ToProject = "D:\\old\\Tataryn\\Program\\workspace\\music\\src\\main\\webapp\\img";  
-	
+	private static final String UPLOAD_ToProject = "D:\\old\\Projekts\\music\\src\\main\\webapp\\img";
+
 	@Autowired
 	private BandService bandService;
 	
@@ -103,7 +103,7 @@ public class BandController {
         if(! new File(realPathtoUploads).exists())
         {
             new File(realPathtoUploads).mkdir();
-        }    
+        }
         byte[] bytes = file.getBytes();  
         BufferedOutputStream stream;
 		try {
@@ -113,10 +113,8 @@ public class BandController {
 	        stream.flush();  
 	        stream.close();  
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}  
         if(band.getId() == 0){
