@@ -58,20 +58,24 @@
                             </button>
                             <script>
                                 btnPlay.onclick = function() {
-                                    alert("1");
                                     $(document).ready(function(){
+                                        $("#jquery_jplayer_1").jPlayer( "clearMedia" );
                                         $("#jquery_jplayer_1").jPlayer({
                                             ready: function () {
                                                 $(this).jPlayer("setMedia", {
-                                                    mp3: "http://www.jplayer.org/audio/mp3/Miaow-01-Tempered-song.mp3",
-                                                    oga: "http://www.jplayer.org/audio/ogg/Miaow-01-Tempered-song.ogg"
+                                                    mp3: "http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3",
+                                                    oga: "http://www.jplayer.org/audio/ogg/TSP-01-Cro_magnon_man.ogg"
                                                 });
                                             },
                                             swfPath: "/js",
                                             supplied: "m4a, oga"
                                         });
+                                        $("#jquery_jplayer_1").jPlayer("setMedia", {
+                                            mp3: "http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3",
+                                            oga: "http://www.jplayer.org/audio/ogg/TSP-01-Cro_magnon_man.ogg"
+                                        });
+                                        $("#jquery_jplayer_1").jPlayer("play", 0);
                                     });
-                                    alert("2");
                                 };
                             </script>
                                 <%--<input type="button" id="btnPlay" value="Кнопка" />--%>

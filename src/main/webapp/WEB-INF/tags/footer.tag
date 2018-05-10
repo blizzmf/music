@@ -5,7 +5,6 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
-
             <div id="jquery_jplayer_1" class="jp-jplayer"></div>
             <div id="jp_container_1" class="jp-audio" role="application" aria-label="media player">
                 <div class="jp-type-playlist">
@@ -43,8 +42,7 @@
                     </div>
                 </div>
             </div>
-
-            <script language="javascript" type="text/javascript">
+                <script>
                 $(document).ready(function () {
                     $("#jquery_jplayer_1").jPlayer( {
                         ready: function () {
@@ -55,8 +53,14 @@
                                 oga: "http://www.jplayer.org/audio/ogg/Miaow-01-Tempered-song.ogg"
                             });
                         },
-                        supplied: "m4a, oga",
-                        swfPath: "/jPlayer/js"
+                        cssSelectorAncestor: "#jp_container_1",
+                        swfPath: "/jPlayer/js",
+                        supplied: "oga, mp3",
+                        wmode: "window",
+                        useStateClassSkin: true,
+                        autoBlur: false,
+                        smoothPlayBar: true,
+                        keyEnabled: true
                     });
                    /* new jPlayerPlaylist({
                         jPlayer: "#jquery_jplayer_1",
