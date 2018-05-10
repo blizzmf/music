@@ -1,5 +1,7 @@
 <%@ tag language="java" pageEncoding="UTF-8" %>
 
+
+<footer>
 <div class="container">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
@@ -43,9 +45,20 @@
             </div>
 
             <script language="javascript" type="text/javascript">
-
                 $(document).ready(function () {
-                    new jPlayerPlaylist({
+                    $("#jquery_jplayer_1").jPlayer( {
+                        ready: function () {
+
+                            $(this).jPlayer("setMedia", {
+                                title: "Tempered Song",
+                                mp3: "http://www.jplayer.org/audio/mp3/Miaow-01-Tempered-song.mp3",
+                                oga: "http://www.jplayer.org/audio/ogg/Miaow-01-Tempered-song.ogg"
+                            });
+                        },
+                        supplied: "m4a, oga",
+                        swfPath: "/jPlayer/js"
+                    });
+                   /* new jPlayerPlaylist({
                         jPlayer: "#jquery_jplayer_1",
                         cssSelectorAncestor: "#jp_container_1"
                     }, [
@@ -97,10 +110,10 @@
                         autoBlur: false,
                         smoothPlayBar: true,
                         keyEnabled: true
-                    });
+                    });*/
                 });
             </script>
         </div><!-- ./col-md-offset-4 -->
     </div><!-- ./row -->
-</div>
-<!-- ./container -->
+</div><!-- ./container -->
+</footer>

@@ -6,6 +6,8 @@
 <%@taglib prefix="sec"
           uri="http://www.springframework.org/security/tags" %>
 <%@ page session="false" %>
+
+
 <!DOCTYPE html>
 <ui:html title="Music" active="music">
     <hr>
@@ -49,7 +51,31 @@
                 </tr>
                 <c:forEach items="${pop}" var="music">
                     <tr>
-
+                        <td>
+                            <button id="btnPlay" type="button" class="btn btn-default"
+                                    aria-label="Left Align">
+                                <span class="fa fa-play-circle fa-3x" aria-hidden="true"></span>
+                            </button>
+                            <script>
+                                btnPlay.onclick = function() {
+                                    alert("1");
+                                    $(document).ready(function(){
+                                        $("#jquery_jplayer_1").jPlayer({
+                                            ready: function () {
+                                                $(this).jPlayer("setMedia", {
+                                                    mp3: "http://www.jplayer.org/audio/mp3/Miaow-01-Tempered-song.mp3",
+                                                    oga: "http://www.jplayer.org/audio/ogg/Miaow-01-Tempered-song.ogg"
+                                                });
+                                            },
+                                            swfPath: "/js",
+                                            supplied: "m4a, oga"
+                                        });
+                                    });
+                                    alert("2");
+                                };
+                            </script>
+                                <%--<input type="button" id="btnPlay" value="Кнопка" />--%>
+                        </td>
                         <td>${music.name}</td>
                         <td>${music.duration}</td>
                         <td>${music.musFormat}</td>
@@ -84,6 +110,7 @@
                 </c:forEach>
             </table>
         </c:if>
+
     </section>
     <h1>Последние добавленные треки</h1>
     <br>
@@ -139,4 +166,5 @@
         </c:if>
     </section>
     <ui:footer></ui:footer>
+
 </ui:html>
