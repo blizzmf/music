@@ -32,8 +32,8 @@ import music.service.MusicService;
 
 @Controller
 public class AlbumController {
-	
-	private static final String UPLOAD_ToProject = "D:\\old\\Tataryn\\Program\\workspace\\music\\src\\main\\webapp\\img\\album";  
+
+	private static final String UPLOAD_ToProject = "D:\\old\\Projekts\\music\\src\\main\\webapp\\img\\album";
 
 	@Autowired
 	private BandService bandService;
@@ -71,16 +71,14 @@ public class AlbumController {
 	        byte[] bytes = file.getBytes();  
 	        BufferedOutputStream stream;
 			try {
-				stream = new BufferedOutputStream(new FileOutputStream(  
+				stream = new BufferedOutputStream(new FileOutputStream(
 				     new File(UPLOAD_ToProject + File.separator + album.getName()+".jpg")));
 		        stream.write(bytes);  
 		        stream.flush();  
 		        stream.close();  
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}  
 	    album.setBand(bandService.getByName(albBand));

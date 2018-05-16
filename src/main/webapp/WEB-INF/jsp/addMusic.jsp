@@ -10,7 +10,7 @@
 <div align="center">
 
 	<form:form class="well form-inline" action="${addAction}"
-		commandName="one">
+			   enctype="multipart/form-data" commandName="one">
 		<div id="headerwrap">
 			<div class="container">
 				<div class="row centered">
@@ -92,6 +92,16 @@
                     </div>
                 </td>
             </tr>
+			<tr>
+				<td>
+					<p>
+						<label for="fileToUpload">Выберите трек</label>
+					</p>
+					<p>
+						<input name="file" id="fileToUpload" type="file" accept=".mp3, .flac"/>
+					</p>
+				</td>
+			</tr>
 			<tr>
 				<td colspan="2"><c:if test="${!empty one.name}">
 						<input type="submit" class="btn btn-primary"

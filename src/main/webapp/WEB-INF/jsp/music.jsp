@@ -6,30 +6,34 @@
 <%@taglib prefix="sec"
           uri="http://www.springframework.org/security/tags" %>
 <%@ page session="false" %>
+
+
 <!DOCTYPE html>
 <ui:html title="Music" active="music">
     <hr>
-    <div id="headerwrap">
-        <h1>Рекомендации</h1>
-        <br>
-        <c:forEach items="${recomend}" var="rec">
-            <div class="col-lg-3">
-                <a href="bandInfo.html?id=${rec.id}"><img
-                        src="img/${rec.name}.jpg" alt="" class="img-circle" width="200"
-                        height="200"></a>
-                <div class="text">
-                    <h3 style="display: inline">
-                        <a href="bandInfo.html?id=${rec.id}"><p class="albumName"
-                                                                style="text-indent: 0px">${rec.name}</p></a>
-                    </h3>
+    <div class="container">
+        <div id="headerwrap">
+            <h1>Рекомендации</h1>
+            <br>
+            <c:forEach items="${recomend}" var="rec">
+                <div class="col-lg-3">
+                    <a href="bandInfo.html?id=${rec.id}"><img
+                            src="img/${rec.name}.jpg" alt="" class="img-circle" width="200"
+                            height="200"></a>
+                    <div class="text">
+                        <h3 style="display: inline">
+                            <a href="bandInfo.html?id=${rec.id}"><p class="albumName"
+                                                                    style="text-indent: 0px">${rec.name}</p></a>
+                        </h3>
+                    </div>
+                    <div class="albInfo">
+                        <c:forEach items="${rec.genres}" var="g" varStatus="loop">
+                            <a href="genreInfo.html?id=${g.id}"><p class="albInfo">${g.name}</p></a>
+                        </c:forEach>
+                    </div>
                 </div>
-                <div class="albInfo">
-                    <c:forEach items="${rec.genres}" var="g" varStatus="loop">
-                        <a href="genreInfo.html?id=${g.id}"><p class="albInfo">${g.name}</p></a>
-                    </c:forEach>
-                </div>
-            </div>
-        </c:forEach>
+            </c:forEach>
+        </div>
     </div>
     <h1>Популярная музыка</h1>
     <br>
@@ -37,6 +41,7 @@
         <c:if test="${!empty pop}">
             <table class="table">
                 <tr>
+                    <th></th>
                     <th>Название</th>
                     <th>Длительность</th>
                     <th>Формат аудио</th>
@@ -49,6 +54,24 @@
                 </tr>
                 <c:forEach items="${pop}" var="music">
                     <tr>
+                        <td>
+                            <button id="btn${music.id}" type="button" class="btn btn-default"
+                                    aria-label="Left Align">
+                                <span class="fa fa-play-circle fa-2x" aria-hidden="true"></span>
+                            </button>
+                            <script>
+                                btn${music.id}.onclick = function () {
+                                    $(document).ready(function () {
+                                        //$("#jquery_jplayer_1").jPlayer( "clearMedia" );
+                                        $("#jquery_jplayer_1").jPlayer("setMedia", {
+                                            mp3: "/mus/${music.name}.mp3"
+                                        });
+                                        $("#jquery_jplayer_1").jPlayer("play", 0);
+                                    });
+                                };
+                            </script>
+                                <%--<input type="button" id="btnPlay" value="Кнопка" />--%>
+                        </td>
                         <td>${music.name}</td>
                         <td>${music.duration}</td>
                         <td>${music.musFormat}</td>
@@ -83,6 +106,7 @@
                 </c:forEach>
             </table>
         </c:if>
+
     </section>
     <h1>Последние добавленные треки</h1>
     <br>
@@ -90,6 +114,7 @@
         <c:if test="${!empty musics}">
             <table class="table">
                 <tr>
+                    <th></th>
                     <th>Название</th>
                     <th>Длительность</th>
                     <th>Формат аудио</th>
@@ -102,13 +127,22 @@
                 </tr>
                 <c:forEach items="${musics}" var="music">
                     <tr>
-                        <td><audio id="player" src="1.mp3" controls></audio>
-                            <%--<div>--%>
-                                <%--<button onclick="document.getElementById('player').play()">Воспроизведение</button>--%>
-                                <%--<button onclick="document.getElementById('player').pause()">Пауза</button>--%>
-                                <%--<button onclick="document.getElementById('player').volume+=0.1">Громкость +</button>--%>
-                                <%--<button onclick="document.getElementById('player').volume-=0.1">Громкость -</button>--%>
-                            <%--</div> --%>
+                        <td>
+                            <button id="btn${music.id}" type="button" class="btn btn-default"
+                                    aria-label="Left Align">
+                                <span class="fa fa-play-circle fa-2x" aria-hidden="true"></span>
+                            </button>
+                            <script>
+                                btn${music.id}.onclick = function () {
+                                    $(document).ready(function () {
+                                        //$("#jquery_jplayer_1").jPlayer( "clearMedia" );
+                                        $("#jquery_jplayer_1").jPlayer("setMedia", {
+                                            mp3: "/mus/${music.name}.mp3"
+                                        });
+                                        $("#jquery_jplayer_1").jPlayer("play", 0);
+                                    });
+                                };
+                            </script>
                         </td>
                         <td>${music.name}</td>
                         <td>${music.duration}</td>
@@ -145,4 +179,5 @@
             </table>
         </c:if>
     </section>
+    <ui:footer></ui:footer>
 </ui:html>
