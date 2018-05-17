@@ -6,16 +6,21 @@
 <nav class="navbar navbar-inverse bg-inverse">
 	<div class="container" id="con">
 		<div class="navbar-header">
-			
 			<button type="button" class="navbar-toggle collapsed"
 				data-toggle="collapse" data-target="#navbar-collapse">
 				<span class="sr-only"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span> <span class="icon-bar"></span>
 			</button>
-			<img alt="Brand" width ="15" height = "15" src="img/music.png">
-			<a class="navbar-brand" href="welcome.html">BlzMusic</a>
+			<a class="navbar-brand" href="welcome.html"><b>Blz</b>Music<i class="fa fa-music"></i></a>
 		</div>
-
+		<form class="navbar-form navbar-left" role="search"
+			  action="search.html" method="post">
+			<div class="form-group">
+				<input type="text" class="form-control" id="search" name="search"
+					   placeholder="Трек, альбом, исполнитель">
+			</div>
+			<button type="submit" class="btn btn-link"><i class="fa fa-search"></i></button>
+		</form>
 		<div class="collapse navbar-collapse" id="navbar-collapse">
 			<ul class="nav navbar-nav">
 				<li ${active eq 'artist'      ? ' class="active"' : ''}><a
@@ -44,17 +49,9 @@
 							<li><a href="addAlbum.html"> Альбом </a></li>
 						</ul></li>
 				</sec:authorize>
-
 			</ul>
-			<form class="navbar-form navbar-left" role="search"
-				action="search.html" method="post">
-				<div class="form-group">
-					<input type="text" class="form-control" id="search" name="search"
-						placeholder="Поиск">
-				</div>
-				<button type="submit" class="btn btn-default">&#128269;</button>
-			</form>
-			<ul class="nav navbar-nav navbar-right">
+
+			<ul class="nav navbar-nav pull-right">
 				<c:if test="${pageContext.request.userPrincipal.name == null}">
 					<li class="nav-item">
 						<div id="login">
@@ -65,23 +62,24 @@
 					</li>
 				</c:if>
 				<c:if test="${pageContext.request.userPrincipal.name != null}">
+					<li>
+						<div id="cart">
+							<a href="cart.html?username=${pageContext.request.userPrincipal.name}">
+									<span class="fa fa-heart"
+										  aria-hidden="true"></span>&nbspМоя музыка
+							</a>
+							<img class="img-circle" width="42" height="42"
+								 src="img/user/${pageContext.request.userPrincipal.name}.jpg">
+						</div></li>
 					<li class="nav-item">
 						<form id="logoutForm" method="POST" action="logout">
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
 						</form>
-						<div class="albInfo">Welcome
-							${pageContext.request.userPrincipal.name}</div>
 						<div style="display: inline;">
 							<a onclick="document.forms['logoutForm'].submit()"><span
 								class="glyphicon glyphicon-log-out" aria-hidden="true"></span>Logout</a>
-							<div id="cart">
-								<a
-									href="cart.html?username=${pageContext.request.userPrincipal.name}">
-									<span class="glyphicon glyphicon-shopping-cart"
-									aria-hidden="true"></span>
-								</a>
-							</div>
+
 						</div>
 					</li>
 				</c:if>

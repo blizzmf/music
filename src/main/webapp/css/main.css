@@ -32,12 +32,12 @@ a:hover{
     
 }
 .navbar-form navbar-left{
-	width: 216px;
+	width: 300px;
 }
 #search{
-	font-family: YandexSans,Arial,Helvetica,sans-serif;
-	width: 150px;
-	:focus::-webkit-input-placeholder {color: transparent}
+	font-family: Comfortaa;
+	width: 244px;
+	/*:focus::-webkit-input-placeholder {color: transparent}*/
 }
 .navbar-form .form-control{
 	width: 150px;
@@ -53,6 +53,12 @@ a:hover{
 #cart{
 	margin: 9.5px 15px;
 	 display: inline;
+}
+#cart a{
+    margin: 9.5px 15px;
+    display: inline;
+    color: black;
+    font-family: "Comfortaa";
 }
 #cartAlbum{
     margin: 4.5px 4px;

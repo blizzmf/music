@@ -10,7 +10,7 @@
 	<c:if test="${true}">
 		<div class="row">
 			<div class="col-lg-3">
-				<img class="img-circle" width="280" height="250"
+				<img class="img-circle" width="200" height="200"
 					src="img/${band.name}.jpg">
 			</div>
 			<div class="col-lg-5">

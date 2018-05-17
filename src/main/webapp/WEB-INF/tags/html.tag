@@ -10,17 +10,18 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <!-- Bootstrap -->
-    <ui:link href="/css/bootstrap.min.css" />
 
     <ui:link href="/css/main.css" />
-    
+
     <ui:link href="/css/css.css" />
+
+    <ui:link href="/css/bootstrap.min.css" />
 
     <ui:link href="/css/font-awesome.min.css" />
 
     <ui:link href="/css/jplayer.blue.monday.min.css" />
 
-    <ui:link href="/css/bootstrap-sortable.css" />
+    <%--<ui:link href="/css/bootstrap-sortable.css" />--%>
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css" rel="stylesheet" />
