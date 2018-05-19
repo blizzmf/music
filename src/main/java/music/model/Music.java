@@ -38,7 +38,7 @@ public class Music {
 	@Column(name = "Cost")
 	private double cost;
 	
-	@ManyToMany (mappedBy = "musics")
+	@ManyToMany (fetch = FetchType.EAGER, mappedBy = "musics")
 	private Set<Album> albums;
 	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})

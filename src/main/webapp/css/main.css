@@ -51,7 +51,8 @@ a:hover{
     font-size: 14px;
 }
 #cart{
-	/*margin: 9.5px 15px;*/
+	/*margin: 9.5px 4px;*/
+    line-height: 50px;
 	 display: inline;
 }
 #cart a{

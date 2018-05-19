@@ -74,7 +74,7 @@
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
 						</form>
-						<div style="margin: 9.3px 30px;">
+						<div style="line-height: 50px;margin-left: 9.5px">
 							<a onclick="document.forms['logoutForm'].submit()"><span
 								class="glyphicon glyphicon-log-out" aria-hidden="true"></span>Logout</a>
 
