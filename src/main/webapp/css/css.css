@@ -29,7 +29,8 @@ p {
 }
 
 a {
-    color: #000000;
+    color: #000000 !important;
+    font-family: "Comfortaa";
 }
 
 a:hover, a:focus {

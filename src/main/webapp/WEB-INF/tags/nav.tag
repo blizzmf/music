@@ -23,8 +23,8 @@
 		</form>
 		<div class="collapse navbar-collapse" id="navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li ${active eq 'artist'      ? ' class="active"' : ''}><a
-					href="artist.html">Артисты<span class="sr-only"></span></a></li>
+				<%--<li ${active eq 'artist'      ? ' class="active"' : ''}><a--%>
+					<%--href="artist.html">Артисты<span class="sr-only"></span></a></li>--%>
 				<li ${active eq 'band'    ? ' class="active"' : ''}><a
 					href="band.html">Группы <span class="sr-only">(current)</span></a></li>
 				<li ${active eq 'music' ? ' class="active"' : ''}><a
@@ -49,9 +49,7 @@
 							<li><a href="addAlbum.html"> Альбом </a></li>
 						</ul></li>
 				</sec:authorize>
-			</ul>
 
-			<ul class="nav navbar-nav pull-right">
 				<c:if test="${pageContext.request.userPrincipal.name == null}">
 					<li class="nav-item">
 						<div id="login">
@@ -76,7 +74,7 @@
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
 						</form>
-						<div style="display: inline;">
+						<div style="margin: 9.3px 30px;">
 							<a onclick="document.forms['logoutForm'].submit()"><span
 								class="glyphicon glyphicon-log-out" aria-hidden="true"></span>Logout</a>
 
