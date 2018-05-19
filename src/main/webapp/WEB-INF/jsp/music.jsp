@@ -10,8 +10,8 @@
 
 <!DOCTYPE html>
 <ui:html title="Music" active="music">
-    <hr>
-    <div class="container">
+    <div class="page_root">
+    <div class="container" data-b="2">
         <div id="headerwrap">
             <h1>Рекомендации</h1>
             <br>
@@ -180,4 +180,5 @@
         </c:if>
     </section>
     <ui:footer></ui:footer>
+    </div>
 </ui:html>

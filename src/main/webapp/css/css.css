@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Raleway|Lora|Comfortaa');
 
 body {
-    background-color: #c5c5c5 !important;
+    background-color: #f6f5f3 !important;
     font-family: "Comfortaa";
     font-weight: 300;
     font-size: 16px;
@@ -176,4 +176,15 @@ footer a{
 .albumName{
     text-indent: 20px;
     font-size: 20px;
+}
+.container{
+    background-color: #ffffff !important;
+    font-family: "Comfortaa";
+}
+.page_root{
+    min-width: 840px;
+    max-width: 1440px;
+    margin: 0 auto;
+    background: #fff;
+    display: block;
 }

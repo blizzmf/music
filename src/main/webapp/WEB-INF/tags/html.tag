@@ -32,9 +32,10 @@
     <c:if test="${not empty title}"><title><spring:message code="${title}" text="${title}" /></title></c:if>
 </head>
 <body>
-    <ui:nav active="${active}" />
 
-    <div class="container">
+
+    <div class="page_root">
+        <ui:nav active="${active}" />
         <jsp:doBody />
     </div>
     <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>--%>
