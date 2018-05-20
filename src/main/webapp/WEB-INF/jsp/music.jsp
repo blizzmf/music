@@ -57,6 +57,23 @@
                                     <div class="track__cover"><img src="img/album/${alb.name}.jpg" width="42" height="42"></div>
                                 </c:forEach>
                             </c:if>
+                            <div class="track_bub"></div>
+                            <div class="track_play_hover">
+                                <button class="btn_play" id="btn${music.id}" type="button">
+                                    <span class="fa fa-play" aria-hidden="true"></span>
+                                </button>
+                                <script>
+                                    btn${music.id}.onclick = function () {
+                                        $(document).ready(function () {
+                                            //$("#jquery_jplayer_1").jPlayer( "clearMedia" );
+                                            $("#jquery_jplayer_1").jPlayer("setMedia", {
+                                                mp3: "/mus/${music.name}.mp3"
+                                            });
+                                            $("#jquery_jplayer_1").jPlayer("play", 0);
+                                        });
+                                    };
+                                </script>
+                            </div>
 
                         </div>
                         <div class="track_info">
@@ -112,7 +129,6 @@
                     <%--});--%>
                     <%--};--%>
                     <%--</script>--%>
-                    <%--&lt;%&ndash;<input type="button" id="btnPlay" value="Кнопка" />&ndash;%&gt;--%>
                     <%--</td>--%>
                     <%--<td>${music.name}</td>--%>
                     <%--<td>${music.duration}</td>--%>

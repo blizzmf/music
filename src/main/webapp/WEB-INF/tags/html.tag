@@ -45,6 +45,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-sortable.js"></script>
     <script src="js/moment.min.js"></script>
+    <script src="../../js/js.js"></script>
     <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>--%>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js"></script>
 
