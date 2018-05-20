@@ -2,7 +2,7 @@
 
 body {
     background-color: #f6f5f3 !important;
-    font-family: "Comfortaa";
+    font-family: "Comfortaa" !important;
     font-weight: 300;
     font-size: 16px;
     color: #000000 !important;
@@ -316,6 +316,29 @@ footer a{
     white-space: nowrap;
     padding: 0 10px 0 0;
     text-align: right;
+}
+.track_dest{
+    color: #777;
+    vertical-align: middle;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: normal;
+    display: inline-block;
+}
+.track_end_hover{
+    display: none;
+    white-space: nowrap;
+    text-align: right;
+    height: 0;
+}
+.track_end_hover a{
+   margin-right: 10px;
+}
+.track:hover .track_end_hover{
+    display: inline-block;
+}
+.track:hover .track_dest{
+    display: none;
 }
 .header1{
     padding: 0 30px;
