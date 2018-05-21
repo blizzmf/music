@@ -70,11 +70,6 @@ public class MusicController {
 		model.addAttribute("recomend", bandService.getRecommendatio(user.getId()));
 		model.addAttribute("musics", musicService.getAllMusic());
 		model.addAttribute("pop", musicService.getPopular());
-		List<Music> mus =  musicService.getPopular();
-		for (Music m: mus) {
-			LOGGER.info("!!!!>>>>>>>>> Set album pop music > " +  m.getAlbums().toString());
-		}
-
 		return "music";
 	}
 	
