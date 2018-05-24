@@ -187,6 +187,7 @@ hr {
     flex: 0 0 60px;
     padding-top: 5px;
 }
+
 .track__cover {
     display: block;
 }
@@ -235,6 +236,34 @@ hr {
     border-color: #ffdb4d;
     top: 15px;
     left: 11px;
+}
+.btn_pause{
+    font-family: "Comfortaa";
+    cursor: pointer;
+    background-clip: padding-box!important;
+    border-radius: 3.1px;
+    -webkit-user-select: none;
+    user-select: none;
+    display: inline-block;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    text-decoration: none;
+    color: #000!important;
+    white-space: nowrap;
+    outline: 0;
+    transition: background .15s ease-out;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border: 0;
+    box-shadow: none;
+    border-width: 0;
+    position: absolute;
+    background: transparent;
+    border-color: #ffdb4d;
+    top: 15px;
+    left: 10px;
+    display: none;
 }
 .track:hover .track_play_hover {
      display:block;
@@ -372,8 +401,8 @@ hr {
     position: absolute;
     top: 40px;
     left: 180px;
-    width: 90px;
-    height: 90px;
+    width: 190px;
+    height: 190px;
     color: black;
     font-family: "Comfortaa";
 }

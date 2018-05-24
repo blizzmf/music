@@ -54,7 +54,7 @@ public class CartController {
 	 		model.addAttribute("albums", albumService.getByUser(user.getId()));
 	 		model.addAttribute("musics", musicService.getByUser(user.getId()));
 	 		
-	        return "redirect:/cart?username=" + username;
+	        return "redirect:/albumInfo?username=" + username;
 	    }
 	 	
 	 	@RequestMapping("removeAlbumFromCart")
@@ -83,7 +83,7 @@ public class CartController {
 	 		model.addAttribute("albums", albumService.getByUser(user.getId()));
 	 		model.addAttribute("musics", musicService.getByUser(user.getId()));
 	 		
-	        return "redirect:/cart?username=" + username;
+	        return "redirect:/music?username=" + username;
 	    }
 	 	
 	 	@RequestMapping("removeMusicFromCart")

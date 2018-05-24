@@ -25,7 +25,7 @@ public class Music {
 	@Column(name = "PK_Music")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column(name = "Name")
 	private String name;
 	
@@ -38,7 +38,7 @@ public class Music {
 	@Column(name = "Cost")
 	private double cost;
 	
-	@ManyToMany (fetch = FetchType.EAGER, mappedBy = "musics")
+	@ManyToMany (fetch = FetchType.EAGER, mappedBy = "musics", cascade = CascadeType.ALL)
 	private Set<Album> albums;
 	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})

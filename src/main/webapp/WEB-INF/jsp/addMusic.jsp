@@ -6,21 +6,10 @@
 <!DOCTYPE html>
 <ui:html title="addMusic" active="Music">
 <c:url var="addAction" value="/addMusic/add" />
-<hr>
-<div align="center">
 
 	<form:form class="well form-inline" action="${addAction}"
-			   enctype="multipart/form-data" commandName="one">
-		<div id="headerwrap">
-			<div class="container">
-				<div class="row centered">
-					<div class="col-lg-8 col-lg-offset-2">
-						<h1>Добавление Музыки</h1>
-					</div>
-				</div>
-			</div>
-		</div>
-		<table class="table">
+			   enctype="multipart/form-data" commandName="one" style="background: white">
+		<table class="table" >
 			<c:if test="${!empty one.name}">
 				<tr>
 					<td><form:label path="id">
@@ -113,5 +102,4 @@
 			</tr>
 		</table>
 	</form:form>
-</div>
 </ui:html>

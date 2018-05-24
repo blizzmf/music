@@ -53,7 +53,8 @@ public class MusicDaoImpl implements MusicDao {
 	@Override
 	public void update(Music obj) {
 		Session session = sessionFactory.getCurrentSession();
-		//session.update(obj);
+		session.clear();
+		session.update(obj);
 		if(obj.getArtistID() != 0){
 			String sql = String.format("UPDATE SongArtist SET FK_Artist = ?, FK_Music = ?, WhoIs = ? where FK_Artist = ?");
 			session.createNativeQuery(sql).setParameter(1, obj.getArtistID()).setParameter(2, obj.getId())
@@ -65,6 +66,10 @@ public class MusicDaoImpl implements MusicDao {
 			//session.createNativeQuery(sql).setParameter(2, obj.getAlbumID());
 			//session.createNativeQuery(sql).setParameter(3, obj.getId()).executeUpdate();
 		}
+		/*String sql = String.format("UPDATE Music SET PK_Music = ?, Name = ?, Duration = ?, MusFormat = ?, Cost = ? where PK_Music = ?");
+		session.createNativeQuery(sql).setParameter(1, obj.getName()).
+				setParameter(2, obj.getDuration()).setParameter(3,obj.getMusFormat()).
+				setParameter(4, obj.getCost()).executeUpdate();*/
 		LOGGER.info("Music successfully updated. Music details: " + obj);
 		
 	}
@@ -72,7 +77,9 @@ public class MusicDaoImpl implements MusicDao {
 	@Override
 	public void remove(int id) {
 		Session session = sessionFactory.getCurrentSession();
+		session.clear();
 		Music music = (Music) session.load(Music.class, new Integer(id));
+		//music.getAlbums().iterator().next().getMusics().remove(music);
 		if (music != null) {
 			session.delete(music);
 		}

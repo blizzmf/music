@@ -21,7 +21,7 @@
                             </div>
                         </div>
                     <div class="jp-time-holder">
-                        <div class="jp-current-time" role="timer" aria-label="time">&nbsp;</div>
+                        <div id="current_time" class="jp-current-time" role="timer" aria-label="time">&nbsp;</div>
                         <div class="jp-duration" role="timer" aria-label="duration">&nbsp;</div>
                     </div>
                         <div class="jp-volume-controls">

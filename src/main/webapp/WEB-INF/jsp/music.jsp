@@ -43,23 +43,43 @@
                             <c:forEach items="${music.albums}" var="alb">
                             <div class="track__cover"><img src="img/album/${alb.name}.jpg" width="42" height="42"></div>
 
-                            <div class="track_bub"></div>
+                            <div id="bub${music.id}" class="track_bub"></div>
                             <div class="track_play_hover">
                                 <button class="btn_play" id="btn${music.id}" type="button">
                                     <span class="fa fa-play" aria-hidden="true"></span>
+                                </button>
+                                <button class="btn_pause" id="btn_pause${music.id}" type="button">
+                                    <span class="fa fa-pause" aria-hidden="true"></span>
                                 </button>
                                 <script>
                                     btn${music.id}.onclick = function () {
                                         $(document).ready(function () {
                                             $("#pic_play").html('<img src="img/album/${alb.name}.jpg" width="42" height="42"></a>');
-
+                                           // $("#bub${music.id}").css('display', 'block');
                                             $("#mus_name").html('<a href="albumInfo.html?id=${alb.id}">${music.name}</a>');
                                             $("#band_name").text('${alb.name}');
                                             //$("#jquery_jplayer_1").jPlayer( "clearMedia" );
-                                            $("#jquery_jplayer_1").jPlayer("setMedia", {
-                                                mp3: "/mus/${music.name}.mp3"
-                                            });
-                                            $("#jquery_jplayer_1").jPlayer("play", 0);
+                                            var e = document.getElementById("mus_name");
+                                            var txt = e.innerText;
+                                            //if($("#current_time").text() == '' && txt == "${music.name}"){
+                                                $("#jquery_jplayer_1").jPlayer("setMedia", {
+                                                    mp3: "/mus/${music.name}.mp3"
+                                                });
+                                          //  }
+                                            $("#jquery_jplayer_1").jPlayer("play", $("#current_time").text());
+                                            $("#btn${music.id}").css("display", "none");
+                                            $("#btn_pause${music.id}").css("display", "inline-block");
+                                            /* while(1){
+                                                $("#bub${music.id}").css('width', '1px');
+                                                $("#bub${music.id}").css('height', '1px');
+                                            }*/
+                                        });
+                                    };
+                                    btn_pause${music.id}.onclick = function () {
+                                        $(document).ready(function () {
+                                            $("#btn_pause${music.id}").css("display", "none");
+                                            $("#btn${music.id}").css("display", "inline-block");
+                                            $("#jquery_jplayer_1").jPlayer("pause", $("#current_time").text());
                                         });
                                     };
                                 </script>
@@ -114,8 +134,6 @@
                                 <c:forEach items="${music.albums}" var="alb">
                                     <div class="track__cover"><img src="img/album/${alb.name}.jpg" width="42"
                                                                    height="42"></div>
-                                </c:forEach>
-                            </c:if>
                             <div class="track_bub"></div>
                             <div class="track_play_hover">
                                 <button class="btn_play" id="btnn${music.id}" type="button">
@@ -124,6 +142,10 @@
                                 <script>
                                     btnn${music.id}.onclick = function () {
                                         $(document).ready(function () {
+                                            $("#pic_play").html('<img src="img/album/${alb.name}.jpg" width="42" height="42"></a>');
+
+                                            $("#mus_name").html('<a href="albumInfo.html?id=${alb.id}">${music.name}</a>');
+                                            $("#band_name").text('${alb.name}');
                                             //$("#jquery_jplayer_1").jPlayer( "clearMedia" );
                                             $("#jquery_jplayer_1").jPlayer("setMedia", {
                                                 mp3: "/mus/${music.name}.mp3"
@@ -133,6 +155,8 @@
                                     };
                                 </script>
                             </div>
+                                </c:forEach>
+                            </c:if>
 
                         </div>
                         <div class="track_info">

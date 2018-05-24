@@ -13,7 +13,7 @@ a:hover{
 }
 .albInfo{
 	color: #777;
-	font-family: YandexSans,Arial,Helvetica,sans-serif;
+    font-family: Comfortaa;
 	font-size: 15px;
     line-height: 20px;
     font-weight: normal;
@@ -36,7 +36,7 @@ a:hover{
 }
 #search{
 	font-family: Comfortaa;
-	width: 244px;
+    width: 244px;
 	/*:focus::-webkit-input-placeholder {color: transparent}*/
 }
 .navbar-form .form-control{
