@@ -436,6 +436,7 @@ hr {
 .nav-tabs >li >a {
     color: #000000 !important;
     font-family: "Comfortaa";
+    background: white !important;
     border-bottom: 3px solid #f33;
 }
 .nav-tabs  a:hover, a:focus {
