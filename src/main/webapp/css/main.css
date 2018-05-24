@@ -61,7 +61,97 @@ a:hover{
     color: black;
     font-family: "Comfortaa";
 }
+.cart a:hover, a:focus {
+    color: #f33 !important;
+    text-decoration: none;
+    outline: 0;
+}
+.cart > .active > a {
+    background: #ffffff !important;
+    border-color: #f33;
+    color: #f33 !important;
+}
+.cart >.open > a {
+    background: #ffffff !important;
+    border-color: #f33;
+    color: #f33 !important;
+}
 #cartAlbum{
     margin: 4.5px 4px;
      display: inline;
+}
+.album{
+    position: relative;
+    width: 223px;
+    height: 292px;
+    padding: 10px;
+    margin: 5px;
+    display: inline-block;
+    font-family: "Comfortaa";
+    vertical-align: top;
+    cursor: pointer;
+}
+.album:hover{
+    border: 2px solid #ffdb4d;
+}
+.album_cover{
+    position: relative;
+}
+.album_hover{
+    position: absolute;
+    top: 97px;
+    left: 100px;
+    right: 10px;
+    height: 200px;
+    display: none;
+}
+.album_hover_action{
+    position: absolute;
+    top: 13%;
+    left: -85px;
+    right: 0;
+    height: 58px;
+    margin-top: -29px;
+    z-index: 2;
+    text-align: center;
+}
+.album:hover .album_hover{
+    display: block;
+}
+.album_hover_overlap{
+    display: none;
+    position: absolute;
+    top: -87px;
+    left: -90px;
+    right: -1px;
+    bottom: 87px;
+    background: rgba(34,34,34,0.6);
+    z-index: 1;
+}
+.album:hover .album_hover_overlap{
+    display: block;
+}
+.album_title{
+    font-family: "Comfortaa";
+    font-weight: bold;
+    margin: 6px 0 3px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: baseline;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.album_band{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.album_year{
+    color: #999;
+    margin-top: 5px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }

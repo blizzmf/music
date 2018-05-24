@@ -61,7 +61,7 @@
 				</c:if>
 				<c:if test="${pageContext.request.userPrincipal.name != null}">
 					<li>
-						<div id="cart">
+						<div class="cart" id="cart">
 							<a href="cart.html?username=${pageContext.request.userPrincipal.name}">
 									<span class="fa fa-heart"
 										  aria-hidden="true"></span>&nbspМоя музыка

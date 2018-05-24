@@ -119,11 +119,6 @@ public class MusicController {
     @RequestMapping("deleteMusic")
 	public String removeMusic(@RequestParam("id") int id, @RequestParam("username") String username) {
 	    Music music = this.musicService.getMusicById(id);
-	    //Album album = albumService.getAlbumById(music.getAlbumID());
-	    //album.getMusics().remove(music);
-		//music.getAlbums().remove(music);
-		music.getAlbums().iterator().next().getMusics().remove(music);
-		music.getAlbums().remove(music);
 		this.musicService.removeMusic(id);
         new File(UPLOAD_ToProject + File.separator + music.getName()+".mp3").delete();
 		return "redirect:/music?username=" + username;

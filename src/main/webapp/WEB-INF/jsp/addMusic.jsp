@@ -49,7 +49,7 @@
                         <label class="control-label col-sm-2" for="musicArtist">Артист:</label>
                         <div class="col-sm-2">
                             <div style="margin-left: 62px">
-                                <select class="selectpicker" name="musicArtist">
+                                <select class="form-control form-control-sm" name="musicArtist">
                                     <option value=""></option>
                                     <c:if test="${true}">
                                         <c:forEach items="${artists}" var="a">
@@ -68,7 +68,7 @@
                         <label class="control-label col-sm-2" for="musicAlbum">Альбом:</label>
                         <div class="col-sm-2">
                             <div style="margin-left: 62px">
-                                <select class="selectpicker" name="musicAlbum">
+                                <select class="form-control form-control-sm" name="musicAlbum">
                                     <option value=""></option>
                                     <c:if test="${true}">
                                         <c:forEach items="${albums}" var="a">

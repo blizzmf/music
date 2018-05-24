@@ -52,7 +52,8 @@ public class AlbumDaoImpl implements AlbumDao{
 	public void update(Album obj) {
 		Session session = sessionFactory.getCurrentSession();
 		session.clear();
-		obj.setReleaseDate(formatter.parse(obj.getFormatDate(), LocalDate::from));
+		if(obj.getFormatDate() != null)
+		    obj.setReleaseDate(formatter.parse(obj.getFormatDate(), LocalDate::from));
 		session.update(obj);
 		LOGGER.info("Album successfully updated. Album details: " + obj);
 	}

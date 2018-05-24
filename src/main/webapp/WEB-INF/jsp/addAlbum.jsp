@@ -10,15 +10,6 @@
 <div align="center">
 	<form:form class="well form-inline" action="${addAction}"
 		enctype="multipart/form-data" commandName="one">
-		<div id="headerwrap">
-			<div class="container">
-				<div class="row centered">
-					<div class="col-lg-8 col-lg-offset-2">
-						<h1>Добавление альбома</h1>
-					</div>
-				</div>
-			</div>
-		</div>
 		<table class="table">
 			<c:if test="${!empty one.name}">
 				<tr>

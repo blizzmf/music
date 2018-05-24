@@ -1,7 +1,10 @@
 package music.service;
 
+import java.sql.Date;
 import java.util.List;
 
+import music.dao.AlbumDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,7 +15,11 @@ import music.model.Music;
 @Service
 public class MusicServiceImpl implements MusicService{
 
+	@Autowired
 	private MusicDao musicDao;
+
+	@Autowired
+	private AlbumDao albumDao;
 	
 	public void setMusicDao(MusicDao musicDao) {
 		this.musicDao = musicDao;
@@ -42,6 +49,12 @@ public class MusicServiceImpl implements MusicService{
 	@Override
 	@Transactional
 	public void removeMusic(int id) {
+		Music music = this.musicDao.getById(id);
+		Album album = music.getAlbums().iterator().next();
+		System.out.println(album);
+		album.getMusics().remove(music);
+		music.getAlbums().remove(album);
+		albumDao.update(album);
 		this.musicDao.remove(id);
 		
 	}

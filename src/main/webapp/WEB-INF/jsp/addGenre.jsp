@@ -7,18 +7,8 @@
 <ui:html title="addGenre" active="Genre">
 
     <c:url var="addAction" value="/addGenre/add"/>
-    <hr>
     <div align="center">
        <form:form class="well form-inline" action="${addAction}" commandName="one">
-       <div id="headerwrap">
-    <div class="container">
-        <div class="row centered">
-            <div class="col-lg-8 col-lg-offset-2">
-                <h1>Добавление Жанра</h1>
-            </div>
-        </div>
-    </div>
-</div>
         <table class="table">
             <c:if test="${!empty one.name}">
                 <tr>

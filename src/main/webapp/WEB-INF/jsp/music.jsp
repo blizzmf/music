@@ -95,7 +95,7 @@
                                         <div class="track_name" title="${music.name}">
                                             <a href="albumInfo.html?id=${alb.id}">${music.name}</a>
                                         </div>
-                                        <div class="track_meta">${alb.band.name}</div>
+                                        <div class="track_meta"><a href="bandInfo.html?id=${alb.band.id}">${alb.band.name}</a></div>
                                     </c:forEach>
                                 </c:if>
                             </div>
@@ -166,7 +166,7 @@
                                         <div class="track_name" title="${music.name}">
                                             <a href="albumInfo.html?id=${alb.id}">${music.name}</a>
                                         </div>
-                                        <div class="track_meta">${alb.band.name}</div>
+                                        <div class="track_meta"><a href="bandInfo.html?id=${alb.band.id}">${alb.band.name}</a></div>
                                     </c:forEach>
                                 </c:if>
                             </div>
