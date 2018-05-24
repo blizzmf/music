@@ -112,4 +112,9 @@ public class BandServiceImpl implements BandService{
 		return this.bandDao.getByAlbum(name);
 	}
 
+	@Override
+	public List<Band> getByUser(int id) {
+		return this.bandDao.getByUser(id);
+	}
+
 }

@@ -7,7 +7,6 @@
 <ui:html title="band" active="band">
  <div class="container">
         <c:if test="${true}">
-            <hr>
             <c:forEach items="${bands}" var="b">
                     <div class="col-lg-3">
                        <a href="bandInfo.html?id=${b.id}"><img src="img/${b.name}.jpg" alt="" class="img-circle" width="200" height="200"></a>

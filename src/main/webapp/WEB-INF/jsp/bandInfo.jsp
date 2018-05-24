@@ -43,6 +43,13 @@
 							aria-label="Left Align">
 							<span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
 						</button></a>
+					<a href="BandToCart.html?id=${band.id}&username=${pageContext.request.userPrincipal.name}" title="Добавить в корзину">
+						<button type="button" class="btn btn-default"
+								aria-label="Left Align">
+							<span class="glyphicon glyphicon-shopping-cart"
+								  aria-hidden="true"></span>
+						</button>
+					</a>
 				</div>
 				</sec:authorize>
 			</div>

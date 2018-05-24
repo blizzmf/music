@@ -19,4 +19,6 @@ public interface BandDao extends CrudDao<Band>{
 	List<Band> getRecommendation(int userID);
 	
 	Band getByAlbum(String name);
+
+	List<Band> getByUser(int id);
 }

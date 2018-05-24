@@ -49,7 +49,18 @@ public class Band {
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="band", cascade = CascadeType.ALL)
     private Set<Album> albums;
-	
+
+	@ManyToMany (mappedBy = "bandsCart")
+	private Set<Cart> cart;
+
+	public Set<Cart> getCart() {
+		return cart;
+	}
+
+	public void setCart(Set<Cart> cart) {
+		this.cart = cart;
+	}
+
 	public Set<Album> getAlbums() {
 		return albums;
 	}
@@ -58,13 +69,9 @@ public class Band {
 		this.albums = albums;
 	}
 
-
-
 	public Set<Genre> getGenres() {
 		return genres;
 	}
-
-
 
 	public void setGenres(Set<Genre> genres) {
 		this.genres = genres;

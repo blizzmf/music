@@ -243,6 +243,23 @@ inner join dbo.Cart on MusicCart.FK_Cart = Cart.PK_Cart
 inner join dbo.Users on Cart.FK_User = Users.PK_Users
 where Users.PK_Users = @id
 End
+------------------------------------------------------------------------------------------------------------------------------------------
+-------------Band in Card
+GO
+/****** Object:  StoredProcedure [dbo].[CartMusic]    Script Date: 11.12.2017 0:15:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+Create Procedure [dbo].[CartBand] @find int
+AS
+BEGIN
+select Band.* from Band
+inner join dbo.BandCart on BandCart.FK_Band = Band.PK_Band
+inner join dbo.Cart on BandCart.FK_Cart = Cart.PK_Cart
+inner join dbo.Users on Cart.FK_User = Users.PK_Users
+where Users.PK_Users = @find
+End
 -------------------------------------------------------------------------------------------------------------------------------------------
 -------альбомы по жанру
 USE [music]

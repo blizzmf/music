@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import music.model.Band;
+import music.service.BandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +32,9 @@ public class CartController {
 	
 	@Autowired
 	private MusicService musicService;
+
+	@Autowired
+	private BandService bandService;
 	
 	@Autowired
 	private UserService userService;
@@ -82,6 +87,7 @@ public class CartController {
 	 		
 	 		model.addAttribute("albums", albumService.getByUser(user.getId()));
 	 		model.addAttribute("musics", musicService.getByUser(user.getId()));
+			model.addAttribute("bands", bandService.getByUser(user.getId()));
 	 		
 	        return "redirect:/music?username=" + username;
 	    }
@@ -100,6 +106,35 @@ public class CartController {
 	 		
 	 		return "redirect:/cart?username=" + username;
 	 	}
+
+		@RequestMapping(value = "/BandToCart")
+		@Transactional
+		public String addBand(Model model, @RequestParam("id") int idBand, @RequestParam("username") String username) {
+			User user = userService.findByUsername(username);
+			Set<Band> bands = user.getCart().getBandsCart();
+			if(bands == null) bands = new HashSet<>();
+			bands.add(bandService.getBandById(idBand));
+			user.getCart().setBandsCart(bands);
+
+			return "redirect:/bandInfo?id=" + idBand;
+		}
+
+		@RequestMapping("removeBandFromCart")
+		@Transactional
+		public String removeBandCart(Model model, @RequestParam("id") int idBand, @RequestParam("username") String username) {
+			User user = userService.findByUsername(username);
+			Set<Band> bands = user.getCart().getBandsCart();
+			bands.remove(bandService.getBandById(idBand));
+			user.getCart().setBandsCart(bands);
+
+
+			model.addAttribute("albums", albumService.getByUser(user.getId()));
+			model.addAttribute("musics", musicService.getByUser(user.getId()));
+			model.addAttribute("bands", bandService.getByUser(user.getId()));
+
+			return "redirect:/cart?username=" + username;
+		}
+
 	 	@RequestMapping("doc/{name}")
 	 	public String createDoc(@PathVariable("name") String username) {
 	 		User user = userService.findByUsername(username);

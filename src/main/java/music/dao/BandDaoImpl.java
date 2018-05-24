@@ -181,4 +181,19 @@ public class BandDaoImpl implements BandDao {
         return this.getByName(obj[1].toString());
 	}
 
+	@Override
+	public List<Band> getByUser(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createSQLQuery("exec CartBand @id = :id").setParameter("id", id).addEntity(Band.class);
+
+		List<Band> bands = new ArrayList<Band>();
+		List result = query.list();
+		for(int i=0; i<result.size(); i++){
+			Band band = (Band)result.get(i);
+			bands.add(band);
+			LOGGER.info("Band successfully loaded. Band cart: " + band);
+		}
+		return bands;
+		}
 }
+

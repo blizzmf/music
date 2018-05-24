@@ -40,8 +40,14 @@ public class Cart {
 			@JoinColumn(name = "FK_Cart", nullable = false, updatable = false) },
 			inverseJoinColumns = { @JoinColumn(name = "FK_Music",
 					nullable = false, updatable = false) })
-	private Set<Music> musicsCart; 
-	
+	private Set<Music> musicsCart;
+
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "BandCart", joinColumns = {
+			@JoinColumn(name = "FK_Cart", nullable = false, updatable = false) },
+			inverseJoinColumns = { @JoinColumn(name = "FK_Band",
+					nullable = false, updatable = false) })
+	private Set<Band> bandsCart;
 	public Cart(){}
 
 	public int getId() {
@@ -55,6 +61,14 @@ public class Cart {
 	@Override
 	public String toString() {
 		return "Cart [id=" + id + "]";
+	}
+
+	public Set<Band> getBandsCart() {
+		return bandsCart;
+	}
+
+	public void setBandsCart(Set<Band> bandsCart) {
+		this.bandsCart = bandsCart;
 	}
 
 	public User getUserCart() {

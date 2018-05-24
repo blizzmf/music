@@ -27,4 +27,6 @@ public interface BandService {
 	List<Band> getRecommendatio(int userID);
 	
 	Band getByAlbum(String name);
+
+	List<Band> getByUser(int id);
 }
