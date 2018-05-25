@@ -120,31 +120,86 @@
                             </c:if>
                         </div>
                         <div class="tab-pane fade" id="tab2">
-                            <c:forEach items="${albums}" var="a" varStatus="loop">
-                                <div class="album">
-                                    <div class="album_cover">
-                                        <a href="albumInfo.html?id=${a.id}"><img src="img/album/${a.name}.jpg" alt=""
-                                                                                 class="img-rounded" width="200" height="200">
-                                        </a>
-                                    </div>
-                                    <div class="album_hover">
-                                        <div class="album_hover_action">
-                                            <a href="removeAlbumFromCart?id=${a.id}&username=${pageContext.request.userPrincipal.name}"
-                                               title="Удалить из Моей музыки" aria-label="Left Align" >
-                                                <span class="fa fa-trash fa-2x" aria-hidden="true"></span>
+                            <c:if test="${!empty albums}">
+                                <c:forEach items="${albums}" var="a" varStatus="loop">
+                                    <div class="album">
+                                        <div class="album_cover">
+                                            <a href="albumInfo.html?id=${a.id}"><img src="img/album/${a.name}.jpg" alt=""
+                                                                                     class="img-rounded" width="200" height="200">
                                             </a>
                                         </div>
-                                        <div class="album_hover_overlap"></div>
+                                        <div class="album_hover">
+                                            <div class="album_hover_action">
+                                                <a href="removeAlbumFromCart?id=${a.id}&username=${pageContext.request.userPrincipal.name}"
+                                                   title="Удалить из Моей музыки" aria-label="Left Align" >
+                                                    <span class="fa fa-trash fa-2x" aria-hidden="true"></span>
+                                                </a>
+                                            </div>
+                                            <div class="album_hover_overlap"></div>
+                                        </div>
+                                        <div class="album_title">
+                                            <a href="albumInfo.html?id=${a.id}">${a.name}</a>
+                                        </div>
+                                        <div class="album_band"><a href="bandInfo.html?id=${a.band.id}">${a.band.name}</a></div>
+                                        <div class="album_year">${a.releaseDate}</div>
                                     </div>
-                                    <div class="album_title">
-                                        <a href="albumInfo.html?id=${a.id}">${a.name}</a>
-                                    </div>
-                                    <div class="album_band"><a href="bandInfo.html?id=${a.band.id}">${a.band.name}</a></div>
-                                    <div class="album_year">${a.releaseDate}</div>
-                                </div>
-                            </c:forEach>
+                                </c:forEach>
+                            </c:if>
                         </div>
-                        <div class="tab-pane fade" id="tab3"></div>
+                        <div class="tab-pane fade" id="tab3">
+                            <c:if test="${!empty bands}">
+                                <c:forEach items="${bands}" var="b" varStatus="loop">
+                                    <div class="album">
+                                        <div class="album_cover">
+                                            <img src="img/${b.name}.jpg" alt=""
+                                                 class="img-circle" width="200" height="200">
+                                        </div>
+                                        <div class="album_hover">
+                                            <div class="album_hover_action">
+                                                <a href="removeBandFromCart?id=${b.id}&username=${pageContext.request.userPrincipal.name}"
+                                                   title="Удалить из Моей музыки" aria-label="Left Align" >
+                                                    <span class="fa fa-trash fa-2x" aria-hidden="true"></span>
+                                                </a>
+                                            </div>
+                                            <div class="band_overlap"></div>
+                                        </div>
+                                        <div class="album_title">
+                                            <a href="bandInfo.html?id=${b.id}">${b.name}</a>
+                                        </div>
+                                        <c:forEach items="${b.genres}" var="g" varStatus="loop">
+                                            <div class="album_band"><a href="genreInfo.html?id=${g.id}">${g.name}</a></div>
+                                        </c:forEach>
+                                    </div>
+                                    <%--<div class="user_band">--%>
+                                        <%--<div class="band">--%>
+                                            <%--<div class="band_content">--%>
+                                                <%--<div class="band_hover">--%>
+                                                    <%--<div class="band_hover_action">--%>
+                                                        <%--<a href="removeBandFromCart?id=${b.id}&username=${pageContext.request.userPrincipal.name}"--%>
+                                                           <%--title="Удалить из Моей музыки" aria-label="Left Align" >--%>
+                                                            <%--<span class="fa fa-trash fa-2x" aria-hidden="true"></span>--%>
+                                                        <%--</a>--%>
+                                                    <%--</div>--%>
+                                                    <%--<div class="band_overlap"></div>--%>
+                                                <%--</div>--%>
+                                                <%--<div class="band_content">--%>
+                                                    <%--<div class="band_cover">--%>
+                                                        <%--<img src="img/${b.name}.jpg" alt=""--%>
+                                                             <%--class="img-circle" width="200" height="200">--%>
+                                                    <%--</div>--%>
+                                                    <%--<div class="band_name"><a href="bandInfo.html?id=${b.id}">${b.name}</a></div>--%>
+                                                    <%--<c:forEach items="${b.genres}" var="g" varStatus="loop">--%>
+                                                        <%--<div class="band_summary">--%>
+                                                            <%--<a href="genreInfo.html?id=${g.id}">${g.name}</a>--%>
+                                                        <%--</div>--%>
+                                                    <%--</c:forEach>--%>
+                                                <%--</div>--%>
+                                            <%--</div>--%>
+                                        <%--</div>--%>
+                                    <%--</div>--%>
+                                </c:forEach>
+                            </c:if>
+                        </div>
                         <div class="tab-pane fade" id="tab4"></div>
                     </div>
                 </div>

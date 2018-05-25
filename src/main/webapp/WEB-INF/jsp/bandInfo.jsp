@@ -34,21 +34,13 @@
 				<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
 				<div class="text">
 					<a href="editBand.html?id=${band.id}" title="Рдактировать группу">
-						<button type="button" class="btn btn-default"
-							aria-label="Left Align">
-							<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-						</button>
-					</a> <a href="<c:url value='/band/remove/${band.id}'/>" title="Удалить группу">
-						<button type="button" class="btn btn-default"
-							aria-label="Left Align">
-							<span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
-						</button></a>
+						<span class="fa fa-pencil" aria-hidden="true"></span>
+					</a>
+					<a href="<c:url value='/band/remove/${band.id}'/>" title="Удалить группу">
+						<span class="fa fa-trash" aria-hidden="true"></span>
+					</a>
 					<a href="BandToCart.html?id=${band.id}&username=${pageContext.request.userPrincipal.name}" title="Добавить в корзину">
-						<button type="button" class="btn btn-default"
-								aria-label="Left Align">
-							<span class="glyphicon glyphicon-shopping-cart"
-								  aria-hidden="true"></span>
-						</button>
+						<span class="fa fa-heart" aria-hidden="true"></span>
 					</a>
 				</div>
 				</sec:authorize>

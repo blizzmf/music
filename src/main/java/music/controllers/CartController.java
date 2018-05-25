@@ -44,6 +44,7 @@ public class CartController {
 		 	User user = userService.findByUsername(name);
 			model.addAttribute("albums", albumService.getByUser(user.getId()));
 			model.addAttribute("musics", musicService.getByUser(user.getId()));
+		 model.addAttribute("bands", bandService.getByUser(user.getId()));
 			return "cart";
 		}
 	 
@@ -58,6 +59,7 @@ public class CartController {
 	 		
 	 		model.addAttribute("albums", albumService.getByUser(user.getId()));
 	 		model.addAttribute("musics", musicService.getByUser(user.getId()));
+			model.addAttribute("bands", bandService.getByUser(user.getId()));
 	 		
 	        return "redirect:/albumInfo?username=" + username;
 	    }
@@ -72,6 +74,7 @@ public class CartController {
 	 		
 	 		model.addAttribute("albums", albumService.getByUser(user.getId()));
 	 		model.addAttribute("musics", musicService.getByUser(user.getId()));
+			model.addAttribute("bands", bandService.getByUser(user.getId()));
 	 		
 	 		return "redirect:/cart?username=" + username;
 	 	}
@@ -103,6 +106,7 @@ public class CartController {
 
 	 		model.addAttribute("albums", albumService.getByUser(user.getId()));
 	 		model.addAttribute("musics", musicService.getByUser(user.getId()));
+			model.addAttribute("bands", bandService.getByUser(user.getId()));
 	 		
 	 		return "redirect:/cart?username=" + username;
 	 	}

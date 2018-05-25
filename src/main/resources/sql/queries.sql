@@ -216,7 +216,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-Create Procedure CartAlbum @find int
+Create Procedure CartAlbum @id int
 AS
 BEGIN
 select Album.* from Album
@@ -234,7 +234,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-Create Procedure [dbo].[CartMusic] @find int
+Create Procedure [dbo].[CartMusic] @id int
 AS
 BEGIN
 select Music.* from Music
@@ -251,14 +251,14 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-Create Procedure [dbo].[CartBand] @find int
+Create Procedure [dbo].[CartBand] @id int
 AS
 BEGIN
 select Band.* from Band
 inner join dbo.BandCart on BandCart.FK_Band = Band.PK_Band
 inner join dbo.Cart on BandCart.FK_Cart = Cart.PK_Cart
 inner join dbo.Users on Cart.FK_User = Users.PK_Users
-where Users.PK_Users = @find
+where Users.PK_Users = @id
 End
 -------------------------------------------------------------------------------------------------------------------------------------------
 -------альбомы по жанру
