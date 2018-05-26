@@ -53,6 +53,9 @@ public class Band {
 	@ManyToMany (mappedBy = "bandsCart")
 	private Set<Cart> cart;
 
+	@OneToMany(mappedBy="band")
+	private Set<Concert> concerts;
+
 	public Set<Cart> getCart() {
 		return cart;
 	}
@@ -75,6 +78,14 @@ public class Band {
 
 	public void setGenres(Set<Genre> genres) {
 		this.genres = genres;
+	}
+
+	public Set<Concert> getConcerts() {
+		return concerts;
+	}
+
+	public void setConcerts(Set<Concert> concerts) {
+		this.concerts = concerts;
 	}
 
 	@Transient

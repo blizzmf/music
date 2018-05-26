@@ -5,7 +5,7 @@
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="ui"%>
 <!DOCTYPE html>
-<ui:html title="bandInfo" active="band">
+<ui:html title="${band.name}" active="band">
 <div class="container">
 	<c:if test="${true}">
 		<div class="row">
@@ -33,15 +33,22 @@
 				<div class="text">${band.descript}</div>
 				<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
 				<div class="text">
-					<a href="editBand.html?id=${band.id}" title="Рдактировать группу">
-						<span class="fa fa-pencil" aria-hidden="true"></span>
-					</a>
-					<a href="<c:url value='/band/remove/${band.id}'/>" title="Удалить группу">
-						<span class="fa fa-trash" aria-hidden="true"></span>
-					</a>
-					<a href="BandToCart.html?id=${band.id}&username=${pageContext.request.userPrincipal.name}" title="Добавить в корзину">
-						<span class="fa fa-heart" aria-hidden="true"></span>
-					</a>
+					<div class="content_info">
+						<a href="editBand.html?id=${band.id}" title="Рдактировать группу">
+							<span class="fa fa-pencil" aria-hidden="true"></span>
+						</a>
+					</div>
+					<div class="content_info">
+						<a href="<c:url value='/band/remove/${band.id}'/>" title="Удалить группу">
+							<span class="fa fa-trash" aria-hidden="true"></span>
+						</a>
+					</div>
+					<div class="content_info">
+						<a href="BandToCart.html?id=${band.id}&username=${pageContext.request.userPrincipal.name}"
+						   title="Добавить в корзину">
+							<span class="fa fa-heart" aria-hidden="true"></span>
+						</a>
+					</div>
 				</div>
 				</sec:authorize>
 			</div>

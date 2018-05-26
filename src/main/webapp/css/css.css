@@ -445,3 +445,7 @@ hr {
     text-decoration: none;
     outline: 0;
 }
+.content_info{
+    margin-right: 15px;
+    display: inline-block;
+}

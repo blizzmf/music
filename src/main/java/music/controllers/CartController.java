@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import music.model.Band;
-import music.service.BandService;
+import music.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,9 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import music.model.Album;
 import music.model.Music;
 import music.model.User;
-import music.service.AlbumService;
-import music.service.MusicService;
-import music.service.UserService;
 
 @Controller
 public class CartController {
@@ -38,14 +35,20 @@ public class CartController {
 	
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private ConcertService concertService;
 	
 	 @RequestMapping("/cart")
 		public String getCart(Model model, @RequestParam("username") String name) {
 		 	User user = userService.findByUsername(name);
-			model.addAttribute("albums", albumService.getByUser(user.getId()));
+
+		 	model.addAttribute("albums", albumService.getByUser(user.getId()));
 			model.addAttribute("musics", musicService.getByUser(user.getId()));
-		 model.addAttribute("bands", bandService.getByUser(user.getId()));
-			return "cart";
+		 	model.addAttribute("bands", bandService.getByUser(user.getId()));
+		 	model.addAttribute("concert", concertService.getAllConcert());
+
+		 	return "cart";
 		}
 	 
 	 	@RequestMapping(value = "/AlbumToCart")

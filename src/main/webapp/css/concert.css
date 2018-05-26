@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Raleway|Lora|Comfortaa');
+
+.user_concert{
+    margin-top: 35px;
+    margin-right: -28px;
+}
+.concert_inhouse{
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: 278px;
+    margin: 0 28px 28px 0;
+    white-space: nowrap;
+}
+.concert_inhouse_cotent{
+    margin-top: 15px;
+}
+.concert_date{
+    display: inline-block;
+    vertical-align: middle;
+    width: 40px;
+    height: 30px;
+    padding: 0 5px 0 0;
+    text-align: center;
+}
+.concert_day{
+    display: block;
+    margin-top: -4px;
+    height: 25px;
+    font-size: 20px;
+    line-height: 1.25;
+}
+.concert_month{
+    display: block;
+    margin-top: -2px;
+    height: 15px;
+    font-size: 11px;
+    line-height: 1.36;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #f10000;
+}
+.concert_details{
+    border-left: 1px solid #e5e5e5;
+    padding-left: 10px;
+    min-height: 30px;
+    width: 232px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.concert_address{
+    font-size: 13px;
+    line-height: 1.15;
+    margin-top: 4px;
+    margin-bottom: -4px;
+    color: #888;
+    white-space: normal;
+}
+.separator{
+    display: inline-block;
+    width: 2px;
+    height: 2px;
+    margin: -2px 6px 0;
+    content: '';
+    overflow: hidden;
+    vertical-align: middle;
+    background-color: #d8d8d8;
+    border-radius: 100%;
+}
+.concert_rating{
+    font-size: 13px;
+    line-height: 1.15;
+    margin-top: 4px;
+    margin-bottom: -4px;
+    color: #888;
+    white-space: normal;
+}
+.concert_showcase{
+    position: relative;
+    width: 100%;
+    height: 350px;
+    padding: 0 30px;
+    margin: 0 -30px 30px -30px;
+    background-position: center 25%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.showcase_date{
+    position: absolute;
+    z-index: 1;
+    top: 20px;
+    left: 55px;
+    color: #fff;
+}
+.showcase_date_day{
+    height: 45px;
+    font-size: 40px;
+    font-weight: normal;
+    line-height: 1.12;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+}
+.showcase_date_month{
+    position: absolute;
+    bottom: 3px;
+    left: 100%;
+    margin-left: 10px;
+    height: 20px;
+    font-size: 15px;
+    line-height: 1.33;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+}
+.showcase_date_weekDay{
+    position: absolute;
+    top: 4px;
+    left: 100%;
+    margin-left: 10px;
+    text-transform: uppercase;
+    height: 15px;
+    font-size: 11px;
+    line-height: 1.36;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+    color: rgba(255,255,255,0.6);
+}
+.showcase_content{
+    position: absolute;
+    z-index: 1;
+    bottom: -115px;
+    left: 28px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 20px 30px 25px 30px;
+}
+.showcase_title{
+    font: 35px/33px "Comfortaa";
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+}
+.showcase_address{
+    margin-top: 5px;
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+    font-size: 15px;
+    line-height: 1.33;
+}
+.showcase_rating{
+    margin-top: 5px;
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+    font-size: 15px;
+    line-height: 1.33;
+}

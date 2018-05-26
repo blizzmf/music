@@ -19,6 +19,8 @@
     <ui:link href="/css/main.css" />
 
     <ui:link href="/css/css.css" />
+
+    <ui:link href="/css/concert.css" />
     <%--<ui:link href="/css/bootstrap-sortable.css" />--%>
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />

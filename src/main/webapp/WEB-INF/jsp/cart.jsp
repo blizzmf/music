@@ -5,7 +5,7 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="ui" %>
 <!DOCTYPE html>
 <c:url var="addAction" value="/doc/${pageContext.request.userPrincipal.name}"/>
-<ui:html title="bandInfo" active="">
+<ui:html title="${pageContext.request.userPrincipal.name} на BlzMusic" active="">
     <div class="page_root">
         <div class="container">
             <c:if test="${true}">
@@ -170,37 +170,38 @@
                                             <div class="album_band"><a href="genreInfo.html?id=${g.id}">${g.name}</a></div>
                                         </c:forEach>
                                     </div>
-                                    <%--<div class="user_band">--%>
-                                        <%--<div class="band">--%>
-                                            <%--<div class="band_content">--%>
-                                                <%--<div class="band_hover">--%>
-                                                    <%--<div class="band_hover_action">--%>
-                                                        <%--<a href="removeBandFromCart?id=${b.id}&username=${pageContext.request.userPrincipal.name}"--%>
-                                                           <%--title="Удалить из Моей музыки" aria-label="Left Align" >--%>
-                                                            <%--<span class="fa fa-trash fa-2x" aria-hidden="true"></span>--%>
-                                                        <%--</a>--%>
-                                                    <%--</div>--%>
-                                                    <%--<div class="band_overlap"></div>--%>
-                                                <%--</div>--%>
-                                                <%--<div class="band_content">--%>
-                                                    <%--<div class="band_cover">--%>
-                                                        <%--<img src="img/${b.name}.jpg" alt=""--%>
-                                                             <%--class="img-circle" width="200" height="200">--%>
-                                                    <%--</div>--%>
-                                                    <%--<div class="band_name"><a href="bandInfo.html?id=${b.id}">${b.name}</a></div>--%>
-                                                    <%--<c:forEach items="${b.genres}" var="g" varStatus="loop">--%>
-                                                        <%--<div class="band_summary">--%>
-                                                            <%--<a href="genreInfo.html?id=${g.id}">${g.name}</a>--%>
-                                                        <%--</div>--%>
-                                                    <%--</c:forEach>--%>
-                                                <%--</div>--%>
-                                            <%--</div>--%>
-                                        <%--</div>--%>
-                                    <%--</div>--%>
                                 </c:forEach>
                             </c:if>
                         </div>
-                        <div class="tab-pane fade" id="tab4"></div>
+                        <div class="tab-pane fade" id="tab4">
+                            <div class="user_concert">
+                                <c:if test="${!empty concert}">
+                                    <c:forEach items="${concert}" var="c" varStatus="loop">
+                                        <div class="concert_inhouse">
+                                            <a href="concertInfo.html?id=${c.id}"><img src="img/${c.band.name}.jpg"
+                                                                                       alt=""
+                                                                                       class="img-rounded" width="278"
+                                                                                       height="180">
+                                            </a>
+                                            <div class="concert_inhouse_cotent">
+                                                <div class="concert_date">
+                                                    <span class="concert_day">${c.day}</span>
+                                                    <span class="concert_month">${c.month}</span>
+                                                </div>
+                                                <div class="concert_details">
+                                                    <a href="concertInfo.html?id=${c.id}">${c.band.name}</a><br>
+                                                    <span class="concert_address">${c.city}
+                                                        <span class="separator">&nbsp;</span>
+                                                        ${c.place}
+                                                    </span>
+                                                    <span class="concert_rating"><span class="separator">&nbsp;</span>${c.age}+</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </c:forEach>
+                                </c:if>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </c:if>

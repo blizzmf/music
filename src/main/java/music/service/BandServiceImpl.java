@@ -21,7 +21,7 @@ public class BandServiceImpl implements BandService{
 	private GenreDao genreDao;
 	
 	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
-	
+
 	public void setBandDao(BandDao bandDao) {
 		this.bandDao = bandDao;
 	}
