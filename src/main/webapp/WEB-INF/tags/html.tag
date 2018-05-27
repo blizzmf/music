@@ -29,6 +29,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/jquery.jplayer.min.js"></script>
     <script type="text/javascript" src="js/jplayer.playlist.min.js"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
     <c:if test="${not empty title}"><title><spring:message code="${title}" text="${title}" /></title></c:if>
 </head>
 <body>
@@ -45,6 +46,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-sortable.js"></script>
     <script src="js/moment.min.js"></script>
+
     <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>--%>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js"></script>
 

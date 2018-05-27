@@ -150,3 +150,19 @@
     font-size: 15px;
     line-height: 1.33;
 }
+.concert_map{
+    padding-top: 101px;
+    padding-left: 25px;
+    margin: 0;
+}
+.map_title{
+    font: 25px/30px "Comfortaa";
+    font-weight: bold;
+    margin: 50px 0 25px 0;
+}
+#map{
+    width: 890px;
+    height: 450px;
+    padding: 0;
+    margin: 0;
+}

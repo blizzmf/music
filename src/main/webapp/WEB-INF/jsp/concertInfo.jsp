@@ -6,6 +6,7 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="ui"%>
 <!DOCTYPE html>
 <ui:html title="${concert.band.name}" active="">
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
     <div class="page_root">
         <div class="concert_showcase">
             <img src="img/concert/${concert.band.name}Live.jpg" alt="" class="img-rounded" width="960" height="500">
@@ -24,6 +25,35 @@
                     ${concert.age}+</span>
                 </span>
             </div>
+
+        </div>
+        <div class="concert_map">
+            <h2 class="map_title">Адрес</h2>
+            <div id="map"></div>
         </div>
     </div>
+    <script>
+        ymaps.ready(init);
+        function init() {
+            var myMap = new ymaps.Map('map', {
+                center: [55.74, 37.58],
+                zoom: 13,
+                controls: []
+            });
+            // Создадим экземпляр элемента управления «поиск по карте»
+            // с установленной опцией провайдера данных для поиска по организациям.
+            var searchControl = new ymaps.control.SearchControl({
+                options: {
+                    provider: 'yandex#search'
+                }
+            });
+
+            myMap.controls.add(searchControl);
+
+            // Программно выполним поиск определённых кафе в текущей
+            // прямоугольной области карты.
+            searchControl.search('${concert.city} ${concert.place}');
+        }
+
+    </script>
 </ui:html>
