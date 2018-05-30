@@ -12,6 +12,7 @@
         <table class="table">
             <c:if test="${!empty one.name}">
                 <tr>
+                    <td></td>
                     <td><form:label path="id">
                             <spring:message text="ID" />
                         </form:label></td>
@@ -20,12 +21,15 @@
                 </tr>
             </c:if>
             <tr>
-                <td><form:label path="name">
-                        <spring:message text="Название жанра" />
-                    </form:label></td>
-                <td><form:input class="form-control" pattern="[A-Za-zА-Яа-яЁё]{,15}" path="name" /></td>
+                <td>
+                    <span class="input_view">
+                        <span class="input_label">Название жанра</span>
+                    </span>
+                </td>
+                <td><form:input class="form-control input_controller" pattern="[A-Za-zА-Яа-яЁё]{,15}" path="name" /></td>
             </tr>
             <tr>
+                <td></td>
                 <td colspan="2"><c:if test="${!empty one.name}">
                         <input type="submit" class="btn btn-primary" value="<spring:message text="Изменить"/>" />
                     </c:if> <c:if test="${empty one.name}">

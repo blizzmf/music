@@ -1,0 +1,113 @@
+.dom_form {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form_field {
+    font-size: 13px;
+    line-height: 18px;
+    color: #000;
+    white-space: normal;
+    position: relative;
+    margin-top: 12px;
+}
+
+.add_input {
+    margin: 0;
+    border: none;
+    background: 0 0;
+    font: inherit;
+    -webkit-appearance: none;
+    font-family: "Comfortaa";
+    width: 400px;
+    font-size: 15px;
+    line-height: 20px;
+    min-height: 30px;
+    height: 45px;
+    padding: 0;
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    max-width: 100%;
+    cursor: text;
+    vertical-align: baseline;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.input_controller {
+    margin: 0;
+    border: none !important;
+    background: 0 0;
+    font: inherit;
+    -webkit-appearance: none;
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    max-width: 100%;
+    cursor: text;
+    vertical-align: baseline;
+    border-bottom: 1px solid #e5e5e5 !important;
+    z-index: 9;
+    width: 100%;
+    height: 100%;
+    /*resize: none;*/
+    line-height: 1;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.input_view {
+    z-index: 1;
+    color: #000;
+    background: -webkit-linear-gradient(#fff, #fff);
+    background: linear-gradient(#fff, #fff);
+    background-clip: padding-box;
+    background-size: 16px 16px;
+    top: -29px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.input_label {
+    display: block;
+    text-align: left;
+    color: rgba(0, 0, 0, .5);
+    -webkit-transition: .075s ease-in;
+    transition: .075s ease-in;
+    -webkit-transition-property: font-size, line-height;
+    transition-property: font-size, line-height;
+    line-height: 45px;
+    font-size: 15px;
+    text-indent: 1px;
+}
+
+.input_controller:focus {
+    border-color: #fc0 !important;
+}
+
+.form_field:hover  .input_label {
+    display: block;
+}
+.well {
+    border: none !important;
+    background-color: white !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+.positPic{
+    margin-left: -15px;
+}
+.table>tbody>tr>td{
+    border: none !important;
+}
+.btn-primary {
+    color: black !important;
+    background-color: #ffdb4d !important;
+    border-color: #ffdb4d !important;
+}
+.btn-primary:hover{
+    background-color: #ffad17 !important;
+}

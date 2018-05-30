@@ -9,7 +9,7 @@
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
     <div class="page_root">
         <div class="concert_showcase">
-            <img src="img/concert/${concert.band.name}Live.jpg" alt="" class="img-rounded" width="960" height="500">
+            <img src="img/concert/${concert.concertDate}${concert.band.name}Live.jpg" alt="" class="img-rounded" width="960" height="500">
             <div class="showcase_date">
                 <span class="showcase_date_day">${concert.day}</span>
                 <span class="showcase_date_month">${concert.month}</span>

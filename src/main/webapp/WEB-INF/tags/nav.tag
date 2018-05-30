@@ -38,15 +38,17 @@
 						role="button" aria-expanded="false">Добавить<span
 							class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="addArtist.html"> Артист </a></li>
+							<li><a href="addAlbum.html"> Альбом </a></li>
 							<li class="divider"></li>
-							<li><a href="addMusic.html"> Музыка </a></li>
+							<li><a href="addArtist.html"> Артист </a></li>
 							<li class="divider"></li>
 							<li><a href="addBand.html"> Группа </a></li>
 							<li class="divider"></li>
 							<li><a href="addGenre.html"> Жанр </a></li>
 							<li class="divider"></li>
-							<li><a href="addAlbum.html"> Альбом </a></li>
+							<li><a href="addConcert.html"> Концерт </a></li>
+							<li class="divider"></li>
+							<li><a href="addMusic.html"> Музыка </a></li>
 						</ul></li>
 				</sec:authorize>
 
