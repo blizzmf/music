@@ -59,6 +59,11 @@ public class AlbumServiceImpl implements AlbumService{
 	}
 
 	@Override
+	public List<Album> getByGenry(int id) {
+		return this.albumDao.getByGenre(id);
+	}
+
+	@Override
 	@Transactional
 	public List<Artist> getByArtist(int fkArtist) {
 		return this.albumDao.getByArtist(fkArtist);

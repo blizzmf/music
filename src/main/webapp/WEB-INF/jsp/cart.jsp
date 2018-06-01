@@ -175,29 +175,31 @@
                         </div>
                         <div class="tab-pane fade" id="tab4">
                             <div class="user_concert">
-                                <c:if test="${!empty concert}">
-                                    <c:forEach items="${concert}" var="c" varStatus="loop">
-                                        <div class="concert_inhouse">
-                                            <a href="concertInfo.html?id=${c.id}"><img src="img/${c.band.name}.jpg"
-                                                                                       alt=""
-                                                                                       class="img-rounded" width="278"
-                                                                                       height="180">
-                                            </a>
-                                            <div class="concert_inhouse_cotent">
-                                                <div class="concert_date">
-                                                    <span class="concert_day">${c.day}</span>
-                                                    <span class="concert_month">${c.month}</span>
-                                                </div>
-                                                <div class="concert_details">
-                                                    <a href="concertInfo.html?id=${c.id}">${c.band.name}</a><br>
-                                                    <span class="concert_address">${c.city}
-                                                        <span class="separator">&nbsp;</span>
-                                                        ${c.place}
-                                                    </span>
-                                                    <span class="concert_rating"><span class="separator">&nbsp;</span>${c.age}+</span>
+                                <c:if test="${!empty bands}">
+                                    <c:forEach items="${bands}" var="b" varStatus="loop">
+                                        <c:forEach items="${b.concerts}" var="c" varStatus="loop">
+                                            <div class="concert_inhouse">
+                                                <a href="concertInfo.html?id=${c.id}"><img src="img/${c.band.name}.jpg"
+                                                                                           alt=""
+                                                                                           class="img-rounded" width="278"
+                                                                                           height="180">
+                                                </a>
+                                                <div class="concert_inhouse_cotent">
+                                                    <div class="concert_date">
+                                                        <span class="concert_day">${c.day}</span>
+                                                        <span class="concert_month">${c.month}</span>
+                                                    </div>
+                                                    <div class="concert_details">
+                                                        <a href="concertInfo.html?id=${c.id}">${c.band.name}</a><br>
+                                                        <span class="concert_address">${c.city}
+                                                            <span class="separator">&nbsp;</span>
+                                                            ${c.place}
+                                                        </span>
+                                                        <span class="concert_rating"><span class="separator">&nbsp;</span>${c.age}+</span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </c:forEach>
                                     </c:forEach>
                                 </c:if>
                             </div>

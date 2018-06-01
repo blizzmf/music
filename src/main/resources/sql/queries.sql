@@ -193,6 +193,24 @@ INNER JOIN dbo.GenreGr ON GenreGr.FK_Band = PK_Band
 inner join dbo.Genre on Genre.PK_Genre = GenreGr.FK_Genre
 where dbo.Genre.PK_Genre = @find
 END
+------------------------------------------------------------------------------------------------------------------------------
+---similar albums
+USE [music]
+GO
+/****** Object:  StoredProcedure [dbo].[Search]    Script Date: 10.12.2017 1:40:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+Create Procedure [dbo].[SimilarAlbum] @id int
+AS
+BEGIN
+select Album.* from Album
+inner join dbo.Band on Album.FK_Band = Band.PK_Band
+INNER JOIN dbo.GenreGr ON GenreGr.FK_Band = PK_Band
+inner join dbo.Genre on Genre.PK_Genre = GenreGr.FK_Genre
+where dbo.Genre.PK_Genre = @id
+END
 ----------------------------------------------------------------------------------------------------------------------------------
 --insert into login
 USE [music]

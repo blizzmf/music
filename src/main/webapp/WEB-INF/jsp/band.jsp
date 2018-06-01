@@ -6,23 +6,30 @@
 <!DOCTYPE html>
 <ui:html title="band" active="band">
  <div class="container">
-        <c:if test="${true}">
-            <c:forEach items="${bands}" var="b">
-                    <div class="col-lg-3">
-                       <a href="bandInfo.html?id=${b.id}"><img src="img/${b.name}.jpg" alt="" class="img-circle" width="200" height="200"></a>
-                        <div class="text">
-                            <h3 style="display:inline">
-                            <a href="bandInfo.html?id=${b.id}"><p class="albumName" style="text-indent: 0px">${b.name}</p></a></h3>
-                        </div>
-	                        <div class="albInfo">
-	                        <c:forEach items="${b.genres}" var="b" varStatus="loop">
-	                            <a href="genreInfo.html?id=${b.id}"><p class="albInfo">${b.name}</p></a>
-	                            <c:if test="${!loop.last}">,</c:if>
-	                            <c:if test="${loop.last}"></c:if>
-	                        </c:forEach>
-	                        </div>
-                    </div>
-            </c:forEach>
-        </c:if>
+     <c:if test="${!empty bands}">
+         <c:forEach items="${bands}" var="b" varStatus="loop">
+             <div class="album">
+                 <div class="album_cover">
+                     <img src="img/${b.name}.jpg" alt=""
+                          class="img-circle" width="200" height="200">
+                 </div>
+                 <div class="album_hover">
+                     <div class="album_hover_action">
+                         <a href="BandToCart.html?id=${b.id}&username=${pageContext.request.userPrincipal.name}"
+                            title="Добавить из Моей музыки" aria-label="Left Align" >
+                             <span class="fa fa-heart fa-2x" aria-hidden="true"></span>
+                         </a>
+                     </div>
+                     <div class="band_overlap"></div>
+                 </div>
+                 <div class="album_title">
+                     <a href="bandInfo.html?id=${b.id}">${b.name}</a>
+                 </div>
+                 <c:forEach items="${b.genres}" var="g" varStatus="loop">
+                     <div class="album_band"><a href="genreInfo.html?id=${g.id}">${g.name}</a></div>
+                 </c:forEach>
+             </div>
+         </c:forEach>
+     </c:if>
     </div>
 </ui:html>

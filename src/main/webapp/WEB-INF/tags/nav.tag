@@ -61,6 +61,30 @@
 						</div>
 					</li>
 				</c:if>
+				<%--<c:if test="${pageContext.request.userPrincipal.name != null}">--%>
+					<%--<li>--%>
+						<%--<div class="cart" id="cart">--%>
+							<%--<a href="cart.html?username=${pageContext.request.userPrincipal.name}">--%>
+									<%--<span class="fa fa-heart"--%>
+										  <%--aria-hidden="true"></span>&nbspМоя музыка--%>
+							<%--</a>--%>
+							<%--<img class="img-circle" width="42" height="42"--%>
+								 <%--src="img/user/${pageContext.request.userPrincipal.name}.jpg">--%>
+						<%--</div></li>--%>
+					<%--<li class="nav-item">--%>
+						<%--<form id="logoutForm" method="POST" action="logout">--%>
+							<%--<input type="hidden" name="${_csrf.parameterName}"--%>
+								<%--value="${_csrf.token}" />--%>
+						<%--</form>--%>
+						<%--<div style="line-height: 50px;margin-left: 9.5px">--%>
+							<%--<a onclick="document.forms['logoutForm'].submit()"><span--%>
+								<%--class="glyphicon glyphicon-log-out" aria-hidden="true"></span>Logout</a>--%>
+
+						<%--</div>--%>
+					<%--</li>--%>
+				<%--</c:if>--%>
+			</ul>
+			<ul class="nav navbar-nav" style="float: right">
 				<c:if test="${pageContext.request.userPrincipal.name != null}">
 					<li>
 						<div class="cart" id="cart">
@@ -74,11 +98,11 @@
 					<li class="nav-item">
 						<form id="logoutForm" method="POST" action="logout">
 							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" />
+								   value="${_csrf.token}" />
 						</form>
 						<div style="line-height: 50px;margin-left: 9.5px">
 							<a onclick="document.forms['logoutForm'].submit()"><span
-								class="glyphicon glyphicon-log-out" aria-hidden="true"></span>Logout</a>
+									class="glyphicon glyphicon-log-out" aria-hidden="true"></span>Logout</a>
 
 						</div>
 					</li>

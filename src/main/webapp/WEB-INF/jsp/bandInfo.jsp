@@ -42,6 +42,7 @@
                             <span class="fa fa-trash" aria-hidden="true"></span>
                         </a>
                     </div>
+                    </sec:authorize>
                     <div class="content_info">
                         <a href="BandToCart.html?id=${band.id}&username=${pageContext.request.userPrincipal.name}"
                            title="Добавить в корзину">
@@ -49,20 +50,47 @@
                         </a>
                     </div>
                 </div>
-            </sec:authorize>
+
         </div>
     </div>
     <div class="tabs">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#bandTab1" data-toggle="tab">Главное</a></li>
-            <li><a href="#bandTab2" data-toggle="tab">Треки</a></li>
-            <li><a href="#bandTab3" data-toggle="tab">Альбомы</a></li>
+            <li class="active"><a href="#bandTab1" data-toggle="tab">Треки</a></li>
+            <li><a href="#bandTab2" data-toggle="tab">Альбомы</a></li>
+            <li><a href="#bandTab3" data-toggle="tab">Концерты</a></li>
             <li><a href="#bandTab4" data-toggle="tab">Похожие</a></li>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane fade in active" id="bandTab1">
+            <div class="tab-pane fade" id="bandTab3">
+                <div class="user_concert">
+                    <c:if test="${!empty band.concerts}">
+                        <c:forEach items="${band.concerts}" var="c" varStatus="loop">
+                            <div class="concert_inhouse">
+                                <a href="concertInfo.html?id=${c.id}"><img src="img/${c.band.name}.jpg"
+                                                                           alt=""
+                                                                           class="img-rounded" width="278"
+                                                                           height="180">
+                                </a>
+                                <div class="concert_inhouse_cotent">
+                                    <div class="concert_date">
+                                        <span class="concert_day">${c.day}</span>
+                                        <span class="concert_month">${c.month}</span>
+                                    </div>
+                                    <div class="concert_details">
+                                        <a href="concertInfo.html?id=${c.id}">${c.band.name}</a><br>
+                                        <span class="concert_address">${c.city}
+                                                        <span class="separator">&nbsp;</span>
+                                                        ${c.place}
+                                                    </span>
+                                        <span class="concert_rating"><span class="separator">&nbsp;</span>${c.age}+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </c:if>
+                </div>
             </div>
-            <div class="tab-pane fade" id="bandTab2">
+            <div class="tab-pane fade in active" id="bandTab1">
                 <c:if test="${!empty band}">
                     <c:forEach items="${band.albums}" var="alb">
                         <c:forEach items="${alb.musics}" var="music">
@@ -123,7 +151,7 @@
                     </c:forEach>
                 </c:if>
             </div>
-            <div class="tab-pane fade" id="bandTab3">
+            <div class="tab-pane fade" id="bandTab2">
                 <c:if test="${!empty albums}">
                     <c:forEach items="${albums}" var="a" varStatus="loop">
                         <div class="album">

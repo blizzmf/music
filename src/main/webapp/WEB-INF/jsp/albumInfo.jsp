@@ -112,11 +112,45 @@
 				</c:forEach>
 			</c:if>
 		</section>
+        <br>
+        <br>
+        <section>
+            <c:if test="${!empty similarAlbum}">
+                <h4>Альбомы этого жанра</h4>
+                <c:forEach items="${similarAlbum}" var="a" varStatus="loop">
+                    <c:if test="${album.name != a.name}">
+                    <div class="album">
+                        <div class="album_cover">
+                            <a href="albumInfo.html?id=${a.id}"><img src="img/album/${a.name}.jpg" alt=""
+                                                                     class="img-rounded" width="200" height="200">
+                            </a>
+                        </div>
+                        <div class="album_hover">
+                            <div class="album_hover_action">
+                                <a href="AlbumToCart.html?id=${album.id}&username=${pageContext.request.userPrincipal.name}"
+                                   title="Добавить в Моей музыки" aria-label="Left Align" >
+                                    <span class="fa fa-heart fa-2x" aria-hidden="true"></span>
+                                </a>
+                            </div>
+                            <div class="album_hover_overlap"></div>
+                        </div>
+                        <div class="album_title">
+                            <a href="albumInfo.html?id=${a.id}">${a.name}</a>
+                        </div>
+                        <div class="album_band"><a href="bandInfo.html?id=${a.band.id}">${a.band.name}</a></div>
+                        <div class="album_year">${a.releaseDate}</div>
+                    </div>
+                    </c:if>
+                </c:forEach>
+            </c:if>
+        </section>
 		<br>
 		<br>
 		<section>
-			<h4>Другие альбомы исполнителя</h4>
-			<c:if test="${!empty band.albums}">
+            <c:if test="${!empty band.albums}">
+                <c:if test="${album.name != band.albums.iterator().next().name}">
+                    <h4>Другие альбомы исполнителя</h4>
+                </c:if>
 				<c:forEach items="${band.albums}" var="a" varStatus="loop">
 					<c:if test="${album.name != a.name}">
 					<div class="album">

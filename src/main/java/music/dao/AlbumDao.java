@@ -9,6 +9,8 @@ public interface AlbumDao extends CrudDao<Album>{
 	List<Album> findAll();
 	
 	List<Album> getByBand(int fkBand);
+
+	List<Album> getByGenre(int id);
 	
 	List<Artist> getByArtist(int fkArtist);
 	

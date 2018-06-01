@@ -89,6 +89,25 @@ public class AlbumDaoImpl implements AlbumDao{
 		return albumList;
 	}
 
+	@Override
+	public List<Album> getByGenre(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		List<Album> albums = new ArrayList<Album>();// = session.createQuery("select Search("+find+")").list();
+
+		Query query = session.createSQLQuery(
+				"exec SimilarAlbum @id = :id")
+				.addEntity(Album.class)
+				.setParameter("id", id);
+
+		List result = query.list();
+		for(int i=0; i<result.size(); i++){
+			Album stock = (Album)result.get(i);
+			albums.add(stock);
+			LOGGER.info("Album successfully loaded. Album search: " + stock);
+		}
+		return albums;
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Artist> getByArtist(int fkArtist) {

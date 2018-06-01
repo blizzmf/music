@@ -18,6 +18,8 @@ public interface AlbumService {
 
 	List<Album> getAllAlbum();
 
+	List<Album> getByGenry(int id);
+
 	List<Artist> getByArtist(int fkArtist);
 	
 	List<Album> getByBand(int fkBand);

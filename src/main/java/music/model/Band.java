@@ -53,7 +53,7 @@ public class Band {
 	@ManyToMany (mappedBy = "bandsCart")
 	private Set<Cart> cart;
 
-	@OneToMany(mappedBy="band")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="band")
 	private Set<Concert> concerts;
 
 	public Set<Cart> getCart() {

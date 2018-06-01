@@ -5,11 +5,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
+import music.model.Genre;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -111,8 +113,10 @@ public class AlbumController {
 	@Transactional
 	public String albumInfo(@RequestParam("id") int id, Model model) {
 		Album album = this.albumService.getAlbumById(id);
+		Iterator<Genre> iter = album.getBand().getGenres().iterator();
 		model.addAttribute("album", album);
 		model.addAttribute("band", album.getBand());
+		model.addAttribute("similarAlbum", albumService.getByGenry(iter.next().getId()));
 		return "albumInfo";
 	}
 }

@@ -3,10 +3,12 @@ package music.controllers;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import music.model.Band;
 import music.service.*;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,142 +24,143 @@ import music.model.User;
 @Controller
 public class CartController {
 
-	private static final String UPLOAD_ToProject = "D:\\old\\Tataryn\\Program\\workspace\\";  
-	
-	@Autowired
-	private AlbumService albumService;
-	
-	@Autowired
-	private MusicService musicService;
+    private static final String UPLOAD_ToProject = "D:\\old\\Tataryn\\Program\\workspace\\";
 
-	@Autowired
-	private BandService bandService;
-	
-	@Autowired
-	private UserService userService;
+    @Autowired
+    private AlbumService albumService;
 
-	@Autowired
-	private ConcertService concertService;
-	
-	 @RequestMapping("/cart")
-		public String getCart(Model model, @RequestParam("username") String name) {
-		 	User user = userService.findByUsername(name);
+    @Autowired
+    private MusicService musicService;
 
-		 	model.addAttribute("albums", albumService.getByUser(user.getId()));
-			model.addAttribute("musics", musicService.getByUser(user.getId()));
-		 	model.addAttribute("bands", bandService.getByUser(user.getId()));
-		 	model.addAttribute("concert", concertService.getAllConcert());
+    @Autowired
+    private BandService bandService;
 
-		 	return "cart";
-		}
-	 
-	 	@RequestMapping(value = "/AlbumToCart")
-	    @Transactional
-	    public String addAlbum(Model model, @RequestParam("id") int idAlbum, @RequestParam("username") String username) {
-	 		User user = userService.findByUsername(username);
-	 		Set<Album> albums = user.getCart().getAlbumsCart();
-	 		if(albums == null) albums = new HashSet<>();
-	 		albums.add(albumService.getAlbumById(idAlbum));
-	 		user.getCart().setAlbumsCart(albums);
-	 		
-	 		model.addAttribute("albums", albumService.getByUser(user.getId()));
-	 		model.addAttribute("musics", musicService.getByUser(user.getId()));
-			model.addAttribute("bands", bandService.getByUser(user.getId()));
-	 		
-	        return "redirect:/albumInfo?username=" + username;
-	    }
-	 	
-	 	@RequestMapping("removeAlbumFromCart")
-	 	@Transactional
-	 	public String removeAlbumCart(Model model, @RequestParam("id") int idAlbum, @RequestParam("username") String username) {
-	 		User user = userService.findByUsername(username);
-	 		Set<Album> albums = user.getCart().getAlbumsCart();
-	 		albums.remove(albumService.getAlbumById(idAlbum));
-	 		user.getCart().setAlbumsCart(albums);
-	 		
-	 		model.addAttribute("albums", albumService.getByUser(user.getId()));
-	 		model.addAttribute("musics", musicService.getByUser(user.getId()));
-			model.addAttribute("bands", bandService.getByUser(user.getId()));
-	 		
-	 		return "redirect:/cart?username=" + username;
-	 	}
-	 	
-	 	@RequestMapping(value = "/MusicToCart")
-	    @Transactional
-	    public String addMusic(Model model, @RequestParam("id") int idMusic, @RequestParam("username") String username) {
-	 		User user = userService.findByUsername(username);
-	 		Set<Music> musics = user.getCart().getMusicsCart();
-	 		if(musics == null) musics = new HashSet<>();
-	 		musics.add(musicService.getMusicById(idMusic));
-	 		user.getCart().setMusicsCart(musics);
-	 		
-	 		model.addAttribute("albums", albumService.getByUser(user.getId()));
-	 		model.addAttribute("musics", musicService.getByUser(user.getId()));
-			model.addAttribute("bands", bandService.getByUser(user.getId()));
-	 		
-	        return "redirect:/music?username=" + username;
-	    }
-	 	
-	 	@RequestMapping("removeMusicFromCart")
-	 	@Transactional
-	 	public String removeMusicCart(Model model, @RequestParam("id") int idMusic, @RequestParam("username") String username) {
-	 		User user = userService.findByUsername(username);
-	 		Set<Music> musics = user.getCart().getMusicsCart();
-	 		musics.remove(musicService.getMusicById(idMusic));
-	 		user.getCart().setMusicsCart(musics);
+    @Autowired
+    private UserService userService;
 
+    @Autowired
+    private ConcertService concertService;
 
-	 		model.addAttribute("albums", albumService.getByUser(user.getId()));
-	 		model.addAttribute("musics", musicService.getByUser(user.getId()));
-			model.addAttribute("bands", bandService.getByUser(user.getId()));
-	 		
-	 		return "redirect:/cart?username=" + username;
-	 	}
+    @RequestMapping("/cart")
+    public String getCart(Model model, @RequestParam("username") String name) {
+        User user = userService.findByUsername(name);
+        List<Band> bands = bandService.getByUser(user.getId());
+        for (Band band : bands) {
+            Hibernate.initialize(band.getConcerts());
+        }
+        model.addAttribute("albums", albumService.getByUser(user.getId()));
+        model.addAttribute("musics", musicService.getByUser(user.getId()));
+        model.addAttribute("bands", bands);
+        model.addAttribute("concert", concertService.getAllConcert());
 
-		@RequestMapping(value = "/BandToCart")
-		@Transactional
-		public String addBand(Model model, @RequestParam("id") int idBand, @RequestParam("username") String username) {
-			User user = userService.findByUsername(username);
-			Set<Band> bands = user.getCart().getBandsCart();
-			if(bands == null) bands = new HashSet<>();
-			bands.add(bandService.getBandById(idBand));
-			user.getCart().setBandsCart(bands);
+        return "cart";
+    }
 
-			return "redirect:/bandInfo?id=" + idBand;
-		}
+    @RequestMapping(value = "/AlbumToCart")
+    @Transactional
+    public String addAlbum(Model model, @RequestParam("id") int idAlbum, @RequestParam("username") String username) {
+        User user = userService.findByUsername(username);
+        Set<Album> albums = user.getCart().getAlbumsCart();
+        if (albums == null) albums = new HashSet<>();
+        albums.add(albumService.getAlbumById(idAlbum));
+        user.getCart().setAlbumsCart(albums);
 
-		@RequestMapping("removeBandFromCart")
-		@Transactional
-		public String removeBandCart(Model model, @RequestParam("id") int idBand, @RequestParam("username") String username) {
-			User user = userService.findByUsername(username);
-			Set<Band> bands = user.getCart().getBandsCart();
-			bands.remove(bandService.getBandById(idBand));
-			user.getCart().setBandsCart(bands);
+        model.addAttribute("albums", albumService.getByUser(user.getId()));
+        model.addAttribute("musics", musicService.getByUser(user.getId()));
+        model.addAttribute("bands", bandService.getByUser(user.getId()));
+
+        return "redirect:/albumInfo?username=" + username;
+    }
+
+    @RequestMapping("removeAlbumFromCart")
+    @Transactional
+    public String removeAlbumCart(Model model, @RequestParam("id") int idAlbum, @RequestParam("username") String username) {
+        User user = userService.findByUsername(username);
+        Set<Album> albums = user.getCart().getAlbumsCart();
+        albums.remove(albumService.getAlbumById(idAlbum));
+        user.getCart().setAlbumsCart(albums);
+
+        model.addAttribute("albums", albumService.getByUser(user.getId()));
+        model.addAttribute("musics", musicService.getByUser(user.getId()));
+        model.addAttribute("bands", bandService.getByUser(user.getId()));
+
+        return "redirect:/cart?username=" + username;
+    }
+
+    @RequestMapping(value = "/MusicToCart")
+    @Transactional
+    public String addMusic(Model model, @RequestParam("id") int idMusic, @RequestParam("username") String username) {
+        User user = userService.findByUsername(username);
+        Set<Music> musics = user.getCart().getMusicsCart();
+        if (musics == null) musics = new HashSet<>();
+        musics.add(musicService.getMusicById(idMusic));
+        user.getCart().setMusicsCart(musics);
+
+        model.addAttribute("albums", albumService.getByUser(user.getId()));
+        model.addAttribute("musics", musicService.getByUser(user.getId()));
+        model.addAttribute("bands", bandService.getByUser(user.getId()));
+
+        return "redirect:/music?username=" + username;
+    }
+
+    @RequestMapping("removeMusicFromCart")
+    @Transactional
+    public String removeMusicCart(Model model, @RequestParam("id") int idMusic, @RequestParam("username") String username) {
+        User user = userService.findByUsername(username);
+        Set<Music> musics = user.getCart().getMusicsCart();
+        musics.remove(musicService.getMusicById(idMusic));
+        user.getCart().setMusicsCart(musics);
 
 
-			model.addAttribute("albums", albumService.getByUser(user.getId()));
-			model.addAttribute("musics", musicService.getByUser(user.getId()));
-			model.addAttribute("bands", bandService.getByUser(user.getId()));
+        model.addAttribute("albums", albumService.getByUser(user.getId()));
+        model.addAttribute("musics", musicService.getByUser(user.getId()));
+        model.addAttribute("bands", bandService.getByUser(user.getId()));
 
-			return "redirect:/cart?username=" + username;
-		}
+        return "redirect:/cart?username=" + username;
+    }
 
-	 	@RequestMapping("doc/{name}")
-	 	public String createDoc(@PathVariable("name") String username) {
-	 		User user = userService.findByUsername(username);
-	 		String listString = "������� " + username + "\n";
+    @RequestMapping(value = "/BandToCart")
+    @Transactional
+    public String addBand(Model model, @RequestParam("id") int idBand, @RequestParam("username") String username) {
+        User user = userService.findByUsername(username);
+        Set<Band> bands = user.getCart().getBandsCart();
+        if (bands == null) bands = new HashSet<>();
+        bands.add(bandService.getBandById(idBand));
+        user.getCart().setBandsCart(bands);
 
-	 		for (Album a : albumService.getByUser(user.getId()))
-	 		{
-	 		    listString += a.toString() + "\n";
-	 		}
-	 		listString += "������ " + username+ "\n";
-	 		for (Music mus :  musicService.getByUser(user.getId()))
-	 		{
-				listString += mus.toString() + "\n";
-	 		}
-	 		Date date = new Date();
-	 		userService.getDoc(listString, UPLOAD_ToProject + username+" " +date.getDate()+"."+ date.getMonth()+".doc");
-	 		return "redirect:/cart?username=" + username;
-	 	}
+        return "redirect:/bandInfo?id=" + idBand;
+    }
+
+    @RequestMapping("removeBandFromCart")
+    @Transactional
+    public String removeBandCart(Model model, @RequestParam("id") int idBand, @RequestParam("username") String username) {
+        User user = userService.findByUsername(username);
+        Set<Band> bands = user.getCart().getBandsCart();
+        bands.remove(bandService.getBandById(idBand));
+        user.getCart().setBandsCart(bands);
+
+
+        model.addAttribute("albums", albumService.getByUser(user.getId()));
+        model.addAttribute("musics", musicService.getByUser(user.getId()));
+        model.addAttribute("bands", bandService.getByUser(user.getId()));
+
+        return "redirect:/cart?username=" + username;
+    }
+
+    @RequestMapping("doc/{name}")
+    public String createDoc(@PathVariable("name") String username) {
+        User user = userService.findByUsername(username);
+        String listString = "������� " + username + "\n";
+
+        for (Album a : albumService.getByUser(user.getId())) {
+            listString += a.toString() + "\n";
+        }
+        listString += "������ " + username + "\n";
+        for (Music mus : musicService.getByUser(user.getId())) {
+            listString += mus.toString() + "\n";
+        }
+        Date date = new Date();
+        userService.getDoc(listString, UPLOAD_ToProject + username + " " + date.getDate() + "." + date.getMonth() + ".doc");
+        return "redirect:/cart?username=" + username;
+    }
 }

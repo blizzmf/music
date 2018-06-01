@@ -17,6 +17,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -80,6 +81,8 @@ public class BandController {
     @Transactional
 	public String bandInfo(Model model, @RequestParam("id") int id) {
     	Band band = bandService.getBandById(id);
+		Hibernate.initialize(band.getConcerts());
+
     	Iterator<Genre> iter = band.getGenres().iterator();
 		model.addAttribute("band", band);
 		model.addAttribute("albums", band.getAlbums());
