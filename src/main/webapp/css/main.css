@@ -209,3 +209,7 @@ a:hover{
     background: rgba(34,34,34,0.6);
     z-index: 1;
 }
+.logo{
+    display: inline;
+    font-weight: normal;
+}

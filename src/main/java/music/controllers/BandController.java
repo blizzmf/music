@@ -42,121 +42,123 @@ import music.service.GenreService;
 
 @Controller
 public class BandController {
-	
-	private static final String UPLOAD_DIRECTORY = File.separator + "img";
-	private static final String UPLOAD_ToProject = "D:\\old\\Projekts\\music\\src\\main\\webapp\\img";
 
-	@Autowired
-	private BandService bandService;
-	
-	@Autowired
-	private AlbumService albumService;
-	
-	@Autowired
-	private HttpServletRequest request;
-	
-	@Autowired
-	private GenreService genreService;
-	
-	 @Autowired(required = true)
-	    @Qualifier(value = "bandService")
-	    public void setBandService(BandService bandService) {
-	        this.bandService = bandService;
-	    }
-	@RequestMapping(value = "/band", method = RequestMethod.GET)
-	public String getAllBands(Model model) {
-		//model.addAttribute("one", new Artist());
-		model.addAttribute("bands", bandService.getAllBand());
-		return "band";
-	}
-	
+    private static final String UPLOAD_DIRECTORY = File.separator + "img";
+    private static final String UPLOAD_ToProject = "D:\\old\\Projekts\\music\\src\\main\\webapp\\img";
+
+    @Autowired
+    private BandService bandService;
+
+    @Autowired
+    private AlbumService albumService;
+
+    @Autowired
+    private HttpServletRequest request;
+
+    @Autowired
+    private GenreService genreService;
+
+    @Autowired(required = true)
+    @Qualifier(value = "bandService")
+    public void setBandService(BandService bandService) {
+        this.bandService = bandService;
+    }
+
+    @RequestMapping(value = {"/", "/band"}, method = RequestMethod.GET)
+    public String getAllBands(Model model) {
+        model.addAttribute("bands", bandService.getAllBand());
+        return "band";
+    }
+
     @RequestMapping(value = "/addBand")
     public String addBand(Model model) {
-    	model.addAttribute("one", new Band());
-    	model.addAttribute("genres", genreService.getAllGenre());
+        model.addAttribute("one", new Band());
+        model.addAttribute("genres", genreService.getAllGenre());
         return "addBand";
     }
-    
+
     @RequestMapping(value = "/bandInfo")
     @Transactional
-	public String bandInfo(Model model, @RequestParam("id") int id) {
-    	Band band = bandService.getBandById(id);
-		Hibernate.initialize(band.getConcerts());
+    public String bandInfo(Model model, @RequestParam("id") int id) {
+        Band band = bandService.getBandById(id);
+        Hibernate.initialize(band.getConcerts());
 
-    	Iterator<Genre> iter = band.getGenres().iterator();
-		model.addAttribute("band", band);
-		model.addAttribute("albums", band.getAlbums());
-		model.addAttribute("similar", bandService.getByGenre(iter.next().getId()));
-		return "bandInfo";
-	}
-    
+        Iterator<Genre> iter = band.getGenres().iterator();
+        model.addAttribute("band", band);
+        model.addAttribute("albums", band.getAlbums());
+        model.addAttribute("similar", bandService.getByGenre(iter.next().getId()));
+        return "bandInfo";
+    }
+
     @RequestMapping(value = "/addBand/add", method = RequestMethod.POST)
     @Transactional
-    public String addBand(@ModelAttribute("one") Band band, @RequestParam("genreBand") String genre, @RequestParam CommonsMultipartFile file,  
-            HttpSession session){
-    	Set<Genre> genres = new HashSet<>();
-    	genres.add(genreService.getByName(genre));
-    	band.setGenres(genres);
+    public String addBand(@ModelAttribute("one") Band band, @RequestParam("genreBand") String genre, @RequestParam CommonsMultipartFile file,
+                          HttpSession session) {
+        Set<Genre> genres = new HashSet<>();
+        genres.add(genreService.getByName(genre));
+        band.setGenres(genres);
     /*	List<Genre> gr = genreService.getByName(genre);
         for (Genre g : gr) {
         	band.setGenreID(g.getId());
         }*/
-    	ServletContext context = session.getServletContext();  
-    	String realPathtoUploads = context.getRealPath(UPLOAD_DIRECTORY);  
-        if(! new File(realPathtoUploads).exists())
-        {
+        ServletContext context = session.getServletContext();
+        String realPathtoUploads = context.getRealPath(UPLOAD_DIRECTORY);
+        if (!new File(realPathtoUploads).exists()) {
             new File(realPathtoUploads).mkdir();
         }
-        byte[] bytes = file.getBytes();  
+        byte[] bytes = file.getBytes();
         BufferedOutputStream stream;
-		try {
-			stream = new BufferedOutputStream(new FileOutputStream(  
-			     new File(UPLOAD_ToProject + File.separator + band.getName()+".jpg")));
-	        stream.write(bytes);  
-	        stream.flush();  
-	        stream.close();  
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}  
-        if(band.getId() == 0){
+        try {
+            stream = new BufferedOutputStream(new FileOutputStream(
+                    new File(UPLOAD_ToProject + File.separator + band.getName() + ".jpg")));
+            stream.write(bytes);
+            stream.flush();
+            stream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (band.getId() == 0) {
             this.bandService.addBand(band);
-        }else {
+        } else {
             this.bandService.updateBand(band);
         }
 
         return "redirect:/band";
     }
-	@RequestMapping("/band/remove/{id}")
-	public String removeBand(@PathVariable("id") int id) {
-		Band band = this.bandService.getBandById(id);
-		this.bandService.removeBand(id);
-		new File(UPLOAD_ToProject + File.separator + band.getName()+".jpg").delete();
-		return "redirect:/band";
-	}
-    @RequestMapping(value = "/editBand")
-	public String editArtist(@RequestParam("id") int id, Model model) {
-		model.addAttribute("one", this.bandService.getBandById(id));
-		model.addAttribute("genres", genreService.getAllGenre());
 
-		return "addBand";
-	}
-    @RequestMapping(value = "search", method = RequestMethod.POST)
-    public String search(Model model, @RequestParam("search") String search){
-    	   if (search.equals("")) {
-               model.addAttribute("bands", bandService.getAllBand());
-           } else {
-               model.addAttribute("bands", bandService.search("%" + search + "%"));
-           }
-		return "band";
-    	
+    @RequestMapping("/band/remove/{id}")
+    public String removeBand(@PathVariable("id") int id) {
+        Band band = this.bandService.getBandById(id);
+        this.bandService.removeBand(id);
+        new File(UPLOAD_ToProject + File.separator + band.getName() + ".jpg").delete();
+        return "redirect:/band";
     }
-    
+
+    @RequestMapping(value = "/editBand")
+    public String editArtist(@RequestParam("id") int id, Model model) {
+        model.addAttribute("one", this.bandService.getBandById(id));
+        model.addAttribute("genres", genreService.getAllGenre());
+
+        return "addBand";
+    }
+
+    @RequestMapping(value = "search", method = RequestMethod.POST)
+    public String search(Model model, @RequestParam("search") String search) {
+        if (search.equals("")) {
+            model.addAttribute("bands", bandService.getAllBand());
+        } else {
+            model.addAttribute("bands", bandService.search("%" + search + "%"));
+        }
+        return "band";
+
+    }
+
     @RequestMapping(value = "/genreInfo")
-    public String genres(Model model, @RequestParam("id") int id){
-    	Genre genre = genreService.getGenreById(id);
-		model.addAttribute("bands", bandService.getByGenre(genre.getId()));
-    	return "band";
+    public String genres(Model model, @RequestParam("id") int id) {
+        Genre genre = genreService.getGenreById(id);
+        model.addAttribute("bands", bandService.getByGenre(genre.getId()));
+        return "band";
     }
 }	

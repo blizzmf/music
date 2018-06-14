@@ -107,11 +107,23 @@
                                             </div>
                                             <div class="track_end">
                                                 <div class="track_end_hover">
+                                                        <a href="/mus/${music.name}.mp3" id="btnDown${music.id}" download title="Скачать">
+                                                            <span class="fa fa-download" aria-hidden="true"></span>
+                                                        </a>
                                                         <a href="removeMusicFromCart?id=${music.id}&username=${pageContext.request.userPrincipal.name}"
                                                            title="Удалить">
                                                             <span class="fa fa-trash" aria-hidden="true"></span>
                                                         </a>
                                                 </div>
+                                                <%--<script>--%>
+                                                    <%--btnDown${music.id}.onclick = function () {--%>
+                                                        <%--$(document).ready(function () {--%>
+                                                           <%--// window.location.href = 'google.com'--%>
+                                                            <%--//var src = ;--%>
+                                                            <%--window.open($("#jquery_jplayer_1").data().jPlayer.status.src);--%>
+                                                                                                           <%--});--%>
+                                                    <%--};--%>
+                                                <%--</script>--%>
                                                 <div class="track_dest">$${music.cost}</div>
                                             </div>
                                         </div>

@@ -11,7 +11,7 @@
 				<span class="sr-only"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span> <span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="welcome.html"><b>Blz</b>Music<i class="fa fa-music"></i></a>
+			<a class="navbar-brand" href="band.html"><b>Blz</b><div class="logo">Music</div><i class="fa fa-music"></i></a>
 		</div>
 		<form class="navbar-form navbar-left" role="search"
 			  action="search.html" method="post">
