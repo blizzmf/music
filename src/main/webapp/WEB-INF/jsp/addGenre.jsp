@@ -29,6 +29,14 @@
                 <td><form:input class="form-control input_controller" pattern="[A-Za-zА-Яа-яЁё]{,15}" path="name" /></td>
             </tr>
             <tr>
+                <td>
+					<span class="input_view">
+                        <span class="input_label">Описание жанра</span>
+                    </span>
+                </td>
+                <td><form:input class="form-control input_controller" path="description" pattern="[A-Za-zА-Яа-яЁё]{,10000}" /></td>
+            </tr>
+            <tr>
                 <td></td>
                 <td colspan="2"><c:if test="${!empty one.name}">
                         <input type="submit" class="btn btn-primary" value="<spring:message text="Изменить"/>" />

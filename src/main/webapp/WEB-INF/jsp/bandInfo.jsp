@@ -29,7 +29,7 @@
                     </c:forEach>
                 </div>
             </div>
-            <div class="text">${band.descript}</div>
+            <div class="text">${band.descript} - <a style="color: #07c!important;" target="_blank" href = "https://yandex.by/search/?text=${band.name}">ещё в интернете</a></div>
             <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
                 <div class="text">
                     <div class="content_info">

@@ -25,7 +25,10 @@ public class Genre {
 	
 	@Column(name = "Name")
 	private String name;
-	
+
+	@Column(name = "Description")
+	private String description;
+
 	@ManyToMany (mappedBy = "genres")
 	private Set<Band> bands;
 	
@@ -34,6 +37,15 @@ public class Genre {
 	@Override
 	public String toString() {
 		return "Genre [id=" + id + ", name=" + name + "]";
+	}
+
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public int getId() {

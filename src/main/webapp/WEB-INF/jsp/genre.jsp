@@ -4,6 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="ui" %>
 <%@ taglib prefix="from" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="false" %>
 <!DOCTYPE html>
 <ui:html title="Genre" active="genre">
@@ -17,9 +18,7 @@
         <div class="tabs">
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#genreTab1" data-toggle="tab">Жанры</a></li>
-                <li><a href="#genreTab2" data-toggle="tab">Альбомы</a></li>
-                <li><a href="#genreTab3" data-toggle="tab">Исполнители</a></li>
-                <li><a href="#genreTab4" data-toggle="tab">Концерты</a></li>
+                <li><a href="#genreTab2" data-toggle="tab">Описание</a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="genreTab1">
@@ -54,10 +53,22 @@
                         </table>
                     </c:if>
                 </div>
-                <div class="tab-pane fade" id="genreTab2"></div>
-                <div class="tab-pane fade" id="genreTab3"></div>
-                <div class="tab-pane fade" id="genreTab4"></div>
-
+                <div class="tab-pane fade" id="genreTab2">
+                    <c:if test="${!empty genres}">
+                        <table class="table">
+                            <tr>
+                                <th>Название</th>
+                                <th>Описание</th>
+                            </tr>
+                            <c:forEach items="${genres}" var="genre">
+                                <tr>
+                                    <td><a href="genreInfo.html?id=${genre.id}">${genre.name}</a></td>
+                                    <td>${genre.description} - <a style="color: #07c!important;" target="_blank" href = "https://yandex.by/search/?text=${genre.name}">ещё в интернете</a></td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                    </c:if>
+                </div>
             </div>
         </div>
     </section>
